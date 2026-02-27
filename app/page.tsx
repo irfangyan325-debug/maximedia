@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-
+import HeroSection from '@/components/sections/HeroSectionn'
 import PainPointsSection from '@/components/sections/PainPointsSection'
 import DeliversSection from '@/components/sections/DeliversSection'
 import ServicesSection from '@/components/sections/ServicesSection'
@@ -13,7 +13,6 @@ import BrandsSection from '@/components/sections/BrandsSection'
 import ContactSection from '@/components/sections/ContactSection'
 import BlogPreviewSection from '@/components/sections/BlogPreviewSection'
 import CtaSection from '@/components/sections/CtaSection'
-import HeroSection from '@/components/sections/Herosection'
 
 export const metadata: Metadata = {
   title: 'MAXIMEDIA: #1 Social Media Management Company & Marketing Agency',
