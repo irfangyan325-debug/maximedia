@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Reveal from '@/components/ui/Reveal'
 import SectionHeader from '@/components/ui/SectionHeader'
-import ContactForm from '@/components/ui/ContactForm'
+import ContactForm from '@/components/ui/Contactform'
 import {
   STATS, CLIENT_LOGOS, PAIN_POINTS, SERVICES, CASE_STUDIES,
   TESTIMONIALS, PROCESS_STEPS, BLOG_POSTS, BRANDS,
@@ -39,8 +39,8 @@ export default function HomePage() {
               <div
                 className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-[0.78rem] font-bold tracking-[0.06em] uppercase"
                 style={{
-                  background: 'rgba(4,211,97,0.08)',
-                  border: '1px solid rgba(4,211,97,0.3)',
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  border: '1px solid rgba(92, 92, 92, 0.3)',
                   color: 'var(--green)',
                 }}
               >
