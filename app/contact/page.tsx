@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Reveal from '@/components/ui/Reveal'
-import ProposalForm from '@/components/ui/Proposalform'
+import ProposalForm from '@/components/ui/ProposalForm'
 import { SITE } from '@/lib/data'
 
 export const metadata: Metadata = { title: 'Contact Us — Get Your Free Social Media Proposal' }

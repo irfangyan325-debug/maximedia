@@ -28,7 +28,8 @@ export default function ProposalForm() {
           ].map(([label, ph]) => (
             <div key={label}>
               <label
-                className="block text-[0.78rem] font-bold tracking-[0.04em] uppercase mb-1.5" style={{ color: 'rgba(255,255,255,0.65)' }}
+                className="block text-[0.78rem] font-bold tracking-[0.04em] uppercase mb-1.5"
+                style={{ color: 'rgba(255,255,255,0.65)' }}
               >
                 {label}
               </label>
@@ -62,7 +63,7 @@ export default function ProposalForm() {
           <select className="form-input">
             <option value="">Select a service...</option>
             {SERVICES.map((s) => (
-              <option key={s.id}>{s.title}</option>
+              <option key={s.title}>{s.title}</option>
             ))}
             <option>Full-Service Package</option>
           </select>

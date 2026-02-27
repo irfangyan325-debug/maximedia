@@ -29,7 +29,7 @@ export default function ServicesPage() {
           <Reveal className="text-center mb-14"><SectionHeader eyebrow="What We Offer" title="Everything You Need to Win on Social" center /></Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {SERVICES.map((s, i) => (
-              <Reveal key={s.id} delay={(i % 3 + 1) as 1|2|3}>
+              <Reveal key={s.title} delay={(i % 3 + 1) as 1|2|3}>
                 <Link href={s.href} className="block card p-7 h-full group relative overflow-hidden">
                   <div className="absolute inset-0 rounded-[18px] opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: 'linear-gradient(135deg, rgba(4,211,97,.07), transparent)' }} />
                   <div className="icon-box mb-5 text-2xl relative">{s.icon}</div>

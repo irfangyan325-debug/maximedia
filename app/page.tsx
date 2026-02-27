@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Reveal from '@/components/ui/Reveal'
 import SectionHeader from '@/components/ui/SectionHeader'
-import ContactForm from '@/components/ui/Contactform'
+import ContactForm from '@/components/ui/ContactForm'
 import {
   STATS, CLIENT_LOGOS, PAIN_POINTS, SERVICES, CASE_STUDIES,
   TESTIMONIALS, PROCESS_STEPS, BLOG_POSTS, BRANDS,
@@ -15,6 +15,9 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      {/* ══════════════════════════════
+          HERO
+      ══════════════════════════════ */}
       <section
         className="relative min-h-screen flex items-center overflow-hidden"
         style={{ paddingTop: 'var(--nav-h)' }}
@@ -260,6 +263,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ══════════════════════════════
+          CLIENT LOGOS MARQUEE
+      ══════════════════════════════ */}
       <div
         className="overflow-hidden"
         style={{
@@ -290,6 +296,9 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* ══════════════════════════════
+          PAIN POINTS
+      ══════════════════════════════ */}
       <section className="section section--alt">
         <div className="container">
           <Reveal className="text-center mb-14">
@@ -312,6 +321,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ══════════════════════════════
+          DELIVERS
+      ══════════════════════════════ */}
       <section className="section">
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -386,6 +398,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ══════════════════════════════
+          SERVICES
+      ══════════════════════════════ */}
       <section className="section section--alt">
         <div className="container">
           <Reveal className="text-center mb-14">
@@ -397,7 +412,7 @@ export default function HomePage() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[18px]">
             {SERVICES.slice(0, 6).map((s, i) => (
-              <Reveal key={s.id} delay={(i % 3 + 1) as 1 | 2 | 3}>
+              <Reveal key={s.title} delay={(i % 3 + 1) as 1 | 2 | 3}>
                 <Link
                   href={s.href}
                   className="block card p-7 h-full group relative overflow-hidden"
@@ -439,6 +454,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ══════════════════════════════
+          CASE STUDIES
+      ══════════════════════════════ */}
       <section className="section" id="work">
         <div className="container">
           <div className="flex justify-between items-end flex-wrap gap-5 mb-12">
@@ -497,6 +515,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ══════════════════════════════
+          ARE YOU IN BANNER
+      ══════════════════════════════ */}
       <div
         className="overflow-hidden py-[26px]"
         style={{
@@ -525,6 +546,9 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* ══════════════════════════════
+          WHY CHOOSE
+      ══════════════════════════════ */}
       <section className="section section--alt">
         <div className="container">
           <Reveal className="text-center mb-12">
@@ -584,6 +608,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ══════════════════════════════
+          TESTIMONIALS
+      ══════════════════════════════ */}
       <section className="section">
         <div className="container">
           <Reveal className="text-center mb-14">
@@ -648,6 +675,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ══════════════════════════════
+          PROCESS
+      ══════════════════════════════ */}
       <section className="section section--alt">
         <div className="container">
           <Reveal className="text-center mb-16">

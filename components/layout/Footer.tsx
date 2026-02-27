@@ -103,6 +103,7 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Newsletter */}
           <div>
             <h4
               className="font-display text-[0.78rem] font-bold tracking-[0.1em] uppercase mb-5"
@@ -117,6 +118,7 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* ─── Partner Badges ─── */}
         <div
           className="py-5 flex flex-wrap gap-2.5"
           style={{ borderTop: '1px solid var(--border)' }}
@@ -136,6 +138,7 @@ export default function Footer() {
           ))}
         </div>
 
+        {/* ─── Bottom Bar ─── */}
         <div
           className="py-5 flex flex-col sm:flex-row justify-between items-center gap-3.5"
           style={{ borderTop: '1px solid var(--border)' }}
