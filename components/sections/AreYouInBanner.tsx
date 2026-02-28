@@ -1,28 +1,41 @@
 export default function AreYouInBanner() {
   return (
     <div
-      className="overflow-hidden py-[26px]"
-      style={{ background: 'linear-gradient(90deg, #03a94e, #04d361 50%, #03a94e)' }}
+      style={{
+        background: 'var(--white)',
+        overflow: 'hidden',
+        padding: '4px 0',
+      
+      }}
     >
-      <div className="overflow-hidden">
-        <div className="marquee-track marquee-track--fast">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="flex items-center gap-5 px-[30px] whitespace-nowrap">
-              <span
-                className="font-display font-extrabold tracking-[0.04em] uppercase text-[1.2rem]"
-                style={{ color: 'rgba(0,0,0,0.85)' }}
-              >
-                ARE YOU IN?
-              </span>
-              <span
-                className="w-6 h-6 rounded-full flex items-center justify-center text-[0.75rem]"
-                style={{ background: 'rgba(0,0,0,0.15)' }}
-              >
-                ✦
-              </span>
-            </div>
-          ))}
-        </div>
+      <div className="marquee-track marquee-track--fast">
+        {Array.from({ length: 14 }).map((_, i) => (
+          <div
+            key={i}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              paddingLeft: '32px',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+            }}
+          >
+            <span style={{ fontSize: 'clamp(2.4rem, 2.5vw, 2.9rem)', lineHeight: 1 }}>🤝</span>
+            <span
+              className="font-display font-black uppercase"
+              style={{
+                fontSize: 'clamp(2.2rem, 2.2vw, 3.55rem)',
+                letterSpacing: '0.03em',
+                color: '#ffbe0a',
+                lineHeight: 1,
+              }}
+            >
+              ARE YOU IN?
+            </span>
+            
+          </div>
+        ))}
       </div>
     </div>
   )

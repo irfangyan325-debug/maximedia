@@ -1,147 +1,236 @@
 import Link from 'next/link'
-import Reveal from '@/components/ui/Reveal'
-import { STATS, CLIENT_LOGOS } from '@/lib/data'
+import { CLIENT_LOGOS } from '@/lib/data'
 
 export default function HeroSection() {
   return (
     <>
+      {/* ══════════════════════════════════════════════════
+          HERO — white bg, left text, right phone + blue blob
+      ══════════════════════════════════════════════════ */}
       <section
-        className="relative min-h-screen flex items-center overflow-hidden"
-        style={{ paddingTop: 'var(--nav-h)' }}
+        style={{
+          background: '#ffffff',
+          paddingTop: 'var(--nav-h)',
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          overflow: 'hidden',
+          position: 'relative',
+        }}
       >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse 55% 65% at 72% 42%, rgba(4,211,97,.09) 0%, transparent 55%), radial-gradient(ellipse 40% 40% at 15% 75%, rgba(4,211,97,.05) 0%, transparent 50%)',
-          }}
-        />
-        <div className="absolute inset-0 pointer-events-none opacity-[0.025] grid-texture" />
+        {/* Faint dot grid */}
+        <div className="absolute inset-0 pointer-events-none grid-texture" style={{ opacity: 0.5 }} />
 
-        <div className="container relative z-10 w-full">
-          <div className="grid lg:grid-cols-2 gap-14 items-center py-20">
+        <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '48px',
+            alignItems: 'center',
+            padding: '80px 0',
+          }}>
 
-            {/* Left — copy */}
+            {/* ── LEFT: Copy ──────────────────────────────── */}
             <div>
-              <div
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-[0.78rem] font-bold tracking-[0.06em] uppercase"
+              {/* Main headline — matches screenshot exactly */}
+              <h1
+                className="font-display font-black uppercase"
                 style={{
-                  background: 'rgba(4,211,97,0.08)',
-                  border: '1px solid rgba(4,211,97,0.3)',
-                  color: 'var(--green)',
+                  fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)',
+                  lineHeight: 1.08,
+                  letterSpacing: '-0.01em',
+                  marginBottom: '0',
                 }}
               >
-                <span className="w-1.5 h-1.5 rounded-full pulse-dot" style={{ background: 'var(--green)' }} />
-                #1 Social Media Marketing Agency
-              </div>
-
-              <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 3.75rem)' }}>
-                Your{' '}
-                <span className="green-text">Results-Driven</span>{' '}
-                Social Marketing Agency for Measurable Growth
+                {/* Line 1 — blue */}
+                <span style={{ color: 'var(--blue)', display: 'block' }}>
+                  YOUR RESULTS-DRIVEN
+                </span>
+                {/* Line 2 — yellow with underline */}
+                <span style={{
+                  color: 'var(--yellow)',
+                  display: 'block',
+                  textDecoration: 'underline',
+                  textDecorationColor: 'var(--yellow)',
+                  textDecorationThickness: '5px',
+                  textUnderlineOffset: '6px',
+                }}>
+                  SOCIAL MARKETING
+                </span>
+                {/* Line 3 — blue */}
+                <span style={{ color: 'var(--blue)', display: 'block' }}>
+                  AGENCY FOR
+                </span>
+                {/* Line 4 — blue */}
+                <span style={{ color: 'var(--blue)', display: 'block' }}>
+                  MEASURABLE GROWTH
+                </span>
               </h1>
 
-              <p
-                className="mt-5 mb-9 leading-[1.75]"
-                style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', maxWidth: 500 }}
-              >
-                <strong className="text-white font-bold">Stop Guessing, Start Growing:</strong>{' '}
+              {/* Subtext */}
+              <p style={{
+                fontSize: '1rem',
+                color: 'rgba(12,26,78,0.7)',
+                lineHeight: 1.75,
+                maxWidth: '460px',
+                margin: '24px 0 32px',
+              }}>
+                <strong style={{ color: 'var(--blue)', fontWeight: 800 }}>
+                  Stop Guessing, Start Growing:
+                </strong>{' '}
                 Partner with a Social Marketing Agency Focused on Your Bottom Line
               </p>
 
-              <div className="flex flex-wrap gap-3.5 mb-14">
-                <Link href="#contact" className="btn btn--primary">
-                  Let&apos;s Drive Growth Together <span>→</span>
-                </Link>
-                <Link href="/work" className="btn btn--outline">
-                  See Our Work
-                </Link>
-              </div>
-
-              {/* Stats */}
-              <div className="flex flex-wrap gap-9 pt-9" style={{ borderTop: '1px solid var(--border)' }}>
-                {STATS.map((s) => (
-                  <div key={s.label}>
-                    <div className="font-display font-extrabold tracking-tight mb-1 green-text" style={{ fontSize: '1.7rem' }}>
-                      {s.number}
-                    </div>
-                    <div className="text-[0.78rem] font-medium" style={{ color: 'var(--text-muted)' }}>
-                      {s.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              {/* Yellow CTA button — exact match */}
+              <Link
+                href="#contact"
+                className="font-display font-black uppercase"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  padding: '16px 32px',
+                  background: 'var(--yellow)',
+                  color: '#0c1a4e',
+                  borderRadius: '10px',
+                  fontSize: '0.82rem',
+                  letterSpacing: '0.1em',
+                  textDecoration: 'none',
+                  boxShadow: '0 6px 24px rgba(245,197,24,0.4)',
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                LET&apos;S DRIVE GROWTH TOGETHER
+              </Link>
             </div>
 
-            <div className="hidden lg:flex justify-center items-center relative">
-              <div
-                className="float-anim absolute top-[14%] -left-14 rounded-[14px] px-[18px] py-3.5 z-10"
-                style={{
-                  background: 'rgba(15,21,39,0.92)',
-                  border: '1px solid var(--border)',
-                  backdropFilter: 'blur(16px)',
-                  boxShadow: '0 16px 40px rgba(0,0,0,.45)',
-                }}
-              >
-                <div className="font-display font-extrabold leading-none mb-1 green-text" style={{ fontSize: '1.35rem' }}>
-                  +3,700%
-                </div>
-                <div className="text-[0.68rem]" style={{ color: 'var(--text-secondary)' }}>Engagement Growth</div>
-                <div className="h-[3px] rounded-full mt-2 overflow-hidden" style={{ background: 'rgba(255,255,255,0.08)', width: '130px' }}>
-                  <div className="h-full rounded-full" style={{ background: 'var(--green)', width: '87%' }} />
-                </div>
-              </div>
+            {/* ── RIGHT: Phone + blue blob ─────────────────── */}
+            <div style={{
+              position: 'relative',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: '520px',
+            }}>
+              {/* Blue blob behind phone */}
+              <div style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-40%, -50%)',
+                width: '420px',
+                height: '420px',
+                borderRadius: '50%',
+                background: 'var(--blue)',
+                zIndex: 0,
+              }} />
 
-              <div
-                className="relative w-[268px] h-[544px] rounded-[44px] overflow-hidden"
-                style={{
-                  background: 'var(--bg-card)',
-                  border: '1.5px solid rgba(255,255,255,.1)',
-                  boxShadow: '0 40px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(4,211,97,.08)',
-                }}
-              >
-                <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-[90px] h-6 rounded-[20px] z-10" style={{ background: '#080C18' }} />
-                <div className="absolute inset-0 flex flex-col gap-2.5 pt-14 px-3.5 pb-3.5" style={{ background: 'linear-gradient(160deg, #111a2e, #0a0f1e)' }}>
-                  {[
-                    { name: 'MAXIMEDIA', emoji: '📈', likes: '4.2k', comments: '318', shares: '892', avatarBg: 'linear-gradient(135deg, #04D361, #00c853)' },
-                    { name: 'Client Brand', emoji: '🎯', likes: '11k', comments: '721', shares: '2.1k', avatarBg: 'linear-gradient(135deg, #3b82f6, #1d4ed8)' },
-                    { name: 'Brand Story', emoji: '🚀', likes: '8.9k', comments: '445', shares: '1.5k', avatarBg: 'linear-gradient(135deg, #a855f7, #7c3aed)' },
-                  ].map((post) => (
-                    <div key={post.name} className="rounded-[14px] p-3" style={{ background: 'rgba(255,255,255,.05)', border: '1px solid rgba(255,255,255,.06)' }}>
-                      <div className="flex items-center gap-2 mb-2.5">
-                        <div className="w-[26px] h-[26px] rounded-full flex-shrink-0" style={{ background: post.avatarBg }} />
-                        <span className="text-[0.68rem] font-bold">{post.name}</span>
-                        <span className="text-[0.6rem] ml-auto" style={{ color: 'var(--text-muted)' }}>2h</span>
-                      </div>
-                      <div className="w-full h-[72px] rounded-[10px] flex items-center justify-center text-2xl mb-2" style={{ background: 'rgba(4,211,97,0.12)' }}>
-                        {post.emoji}
-                      </div>
-                      <div className="flex gap-3">
-                        {[['❤️', post.likes], ['💬', post.comments], ['↗', post.shares]].map(([ico, val]) => (
-                          <span key={ico} className="text-[0.6rem]" style={{ color: 'var(--text-muted)' }}>
-                            {ico} <span style={{ color: 'var(--green)', fontWeight: 700 }}>{val}</span>
-                          </span>
+              {/* Phone outline — matches the thin line-art style */}
+              <div style={{
+                position: 'relative',
+                zIndex: 1,
+                width: '240px',
+                height: '490px',
+              }}>
+                {/* Outer frame — thin black outline like screenshot */}
+                <div style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '36px',
+                  border: '3px solid #0c1a4e',
+                  background: '#fff',
+                  overflow: 'hidden',
+                  boxShadow: '4px 8px 32px rgba(12,26,78,0.18)',
+                  position: 'relative',
+                }}>
+                  {/* Notch */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '10px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '80px',
+                    height: '20px',
+                    borderRadius: '20px',
+                    background: '#0c1a4e',
+                    zIndex: 10,
+                  }} />
+
+                  {/* Screen — photo-like content */}
+                  <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'linear-gradient(170deg, #1a56db 0%, #a8d4f0 40%, #f5e6c0 70%, #e8c87a 100%)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    paddingTop: '36px',
+                    overflow: 'hidden',
+                  }}>
+                    {/* Simulated social post image */}
+                    <div style={{
+                      width: '86%',
+                      height: '58%',
+                      borderRadius: '14px',
+                      background: 'linear-gradient(145deg, #87ceeb 0%, #4a90d9 40%, #f5c518 70%, #e8a020 100%)',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '4rem',
+                      marginBottom: '12px',
+                    }}>
+                      🏖️
+                    </div>
+
+                    {/* Engagement bar */}
+                    <div style={{
+                      width: '86%',
+                      background: 'rgba(255,255,255,0.9)',
+                      borderRadius: '10px',
+                      padding: '8px 12px',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}>
+                      <div style={{ display: 'flex', gap: '10px' }}>
+                        {['❤️', '💬', '↗️'].map((ic) => (
+                          <span key={ic} style={{ fontSize: '0.9rem' }}>{ic}</span>
                         ))}
                       </div>
+                      <span style={{
+                        fontSize: '0.6rem',
+                        fontWeight: 800,
+                        color: 'var(--blue)',
+                      }}>
+                        100K+ views
+                      </span>
                     </div>
-                  ))}
-                </div>
-              </div>
 
-              <div
-                className="float-anim-delay absolute bottom-[20%] -right-12 rounded-[14px] px-[18px] py-3.5 z-10"
-                style={{
-                  background: 'rgba(15,21,39,0.92)',
-                  border: '1px solid var(--border)',
-                  backdropFilter: 'blur(16px)',
-                  boxShadow: '0 16px 40px rgba(0,0,0,.45)',
-                }}
-              >
-                <div className="font-display font-extrabold leading-none mb-1 green-text" style={{ fontSize: '1.35rem' }}>+1,400%</div>
-                <div className="text-[0.68rem]" style={{ color: 'var(--text-secondary)' }}>Audience Growth</div>
-                <div className="h-[3px] rounded-full mt-2 overflow-hidden" style={{ background: 'rgba(255,255,255,0.08)', width: '130px' }}>
-                  <div className="h-full rounded-full" style={{ background: 'var(--green)', width: '72%' }} />
+                    {/* Username */}
+                    <div style={{
+                      marginTop: '8px',
+                      fontSize: '0.6rem',
+                      fontWeight: 700,
+                      color: '#0c1a4e',
+                      opacity: 0.7,
+                    }}>
+                      @maximedia
+                    </div>
+                  </div>
                 </div>
+
+                {/* Shadow line under phone (like screenshot's thin line-art shadow) */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: '-16px',
+                  left: '10%',
+                  right: '10%',
+                  height: '3px',
+                  background: 'rgba(12,26,78,0.15)',
+                  borderRadius: '50%',
+                  filter: 'blur(4px)',
+                }} />
               </div>
             </div>
 
@@ -149,30 +238,38 @@ export default function HeroSection() {
         </div>
       </section>
 
-      <div
-        className="overflow-hidden"
-        style={{
-          padding: '44px 0',
-          background: 'rgba(255,255,255,0.018)',
-          borderTop: '1px solid var(--border)',
-          borderBottom: '1px solid var(--border)',
-        }}
-      >
-        <p className="text-center text-[0.72rem] font-semibold tracking-[0.12em] uppercase mb-6" style={{ color: 'var(--text-muted)' }}>
-          Trusted by 500+ leading brands worldwide
-        </p>
-        <div className="overflow-hidden">
-          <div className="marquee-track">
-            {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, i) => (
-              <span
-                key={i}
-                className="px-8 h-[38px] flex items-center font-display text-[0.82rem] font-bold tracking-[0.05em] whitespace-nowrap cursor-default transition-colors duration-200 hover:text-white/75"
-                style={{ color: 'rgba(255,255,255,0.32)' }}
-              >
-                {logo}
-              </span>
-            ))}
-          </div>
+      {/* ══════════════════════════════════════════════════
+          CLIENT LOGOS MARQUEE — plain white, greyed logos
+      ══════════════════════════════════════════════════ */}
+      <div style={{
+        background: '#ffffff',
+        borderTop: '1px solid rgba(26,86,219,0.08)',
+        borderBottom: '1px solid rgba(26,86,219,0.08)',
+        padding: '28px 0',
+        overflow: 'hidden',
+      }}>
+        <div className="marquee-track">
+          {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, i) => (
+            <span
+              key={i}
+              style={{
+                padding: '0 36px',
+                height: '36px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                fontFamily: 'var(--font-display)',
+                fontSize: '0.82rem',
+                fontWeight: 700,
+                letterSpacing: '0.04em',
+                color: 'rgba(12,26,78,0.22)',
+                whiteSpace: 'nowrap',
+                cursor: 'default',
+                flexShrink: 0,
+              }}
+            >
+              {logo}
+            </span>
+          ))}
         </div>
       </div>
     </>

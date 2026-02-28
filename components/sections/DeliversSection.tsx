@@ -1,65 +1,173 @@
-import Reveal from '@/components/ui/Reveal'
+'use client'
+
+import { useRef, useState, useEffect, useCallback } from 'react'
+
+const PORTFOLIO_CARDS = [
+  { bg: 'linear-gradient(145deg, #87ceeb, #4a90d9)', emoji: '⚾', label: "Dick's Sporting Goods", accent: '#ff6b35' },
+  { bg: 'linear-gradient(145deg, #c8a870, #a0854a)', emoji: '🍔', label: "Beef O'Brady's",         accent: '#f5c518' },
+  { bg: 'linear-gradient(145deg, #f0e8d8, #d4c4a0)', emoji: '🐯', label: "Dick's Sporting Goods",  accent: '#c0392b' },
+  { bg: 'linear-gradient(145deg, #e8b4b8, #c0454c)', emoji: '💪', label: 'A3C Festival',            accent: '#f5c518' },
+  { bg: 'linear-gradient(145deg, #1a56db, #0d3a9e)', emoji: '📱', label: 'Samsung',                 accent: '#f5c518' },
+  { bg: 'linear-gradient(145deg, #2ecc71, #1a8a4a)', emoji: '🏠', label: 'Angi',                    accent: '#fff'    },
+  { bg: 'linear-gradient(145deg, #9b59b6, #6c3483)', emoji: '🎵', label: 'Carnival',                 accent: '#f5c518' },
+  { bg: 'linear-gradient(145deg, #e67e22, #ca6f1e)', emoji: '🎯', label: 'SHOKZ',                    accent: '#fff'    },
+]
+
+const PILL_POINTS = [
+  { bold: 'DATA-DRIVEN STRATEGIES', rest: 'TAILORED TO YOUR GOALS'             },
+  { bold: 'EXPERT EXECUTION',       rest: 'ACROSS ALL MAJOR PLATFORMS'         },
+  { bold: 'TRANSPARENT REPORTING',  rest: 'FOCUSED ON KEY BUSINESS METRICS'    },
+]
 
 export default function DeliversSection() {
-  return (
-    <section className="section">
-      <div className="container">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          <Reveal>
-            <div className="eyebrow">Why MAXIMEDIA</div>
-            <h2 style={{ fontSize: 'clamp(1.9rem, 3.5vw, 2.9rem)' }}>
-              MAXIMEDIA Delivers Strategic Social Marketing That Converts
-            </h2>
-            <div className="flex flex-col gap-3.5 mt-8">
-              {[
-                { bold: 'Data-Driven Strategies', rest: 'Tailored to Your Goals' },
-                { bold: 'Expert Execution', rest: 'Across All Major Platforms' },
-                { bold: 'Transparent Reporting', rest: 'Focused on Key Business Metrics' },
-              ].map((item) => (
-                <div
-                  key={item.bold}
-                  className="flex items-start gap-3.5 p-[18px_20px] rounded-[14px]"
-                  style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
-                >
-                  <div
-                    className="w-[22px] h-[22px] min-w-[22px] rounded-[6px] flex items-center justify-center text-[0.7rem] font-extrabold mt-0.5"
-                    style={{ background: 'var(--green-subtle)', border: '1px solid var(--green-border)', color: 'var(--green)' }}
-                  >
-                    ✓
-                  </div>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                    <strong className="text-white font-semibold">{item.bold}</strong> {item.rest}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
+  const trackRef = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState(1)
 
-          <Reveal delay={2}>
-            <div className="grid grid-cols-2 gap-3">
-              <div
-                className="col-span-2 h-[200px] rounded-[18px] flex flex-col items-center justify-center gap-2"
-                style={{ background: 'linear-gradient(135deg, rgba(4,211,97,.1), rgba(12,17,32,1))', border: '1px solid var(--border)' }}
-              >
-                <span className="text-5xl">🚀</span>
-                <span className="text-xs" style={{ color: 'var(--text-muted)' }}>Growth-Focused Strategy</span>
-              </div>
-              <div
-                className="h-[140px] rounded-[18px] flex items-center justify-center text-4xl"
-                style={{ background: 'linear-gradient(135deg, #0f1c2e, #0a1520)', border: '1px solid var(--border)' }}
-              >
-                📱
-              </div>
-              <div
-                className="h-[140px] rounded-[18px] flex items-center justify-center text-4xl"
-                style={{ background: 'linear-gradient(135deg, #141c0e, #0a1410)', border: '1px solid var(--border)' }}
-              >
-                📊
-              </div>
+  const scrollToIdx = useCallback((idx: number) => {
+    const track = trackRef.current
+    if (!track) return
+    const cardW = 420 + 16
+    track.scrollTo({ left: Math.max(0, idx * cardW - (track.clientWidth / 2 - 420 / 2)), behavior: 'smooth' })
+    setActive(idx)
+  }, [])
+
+  // Auto-advance
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActive((a) => {
+        const next = (a + 1) % PORTFOLIO_CARDS.length
+        const track = trackRef.current
+        if (track) {
+          const cardW = 420 + 16
+          track.scrollTo({ left: Math.max(0, next * cardW - (track.clientWidth / 2 - 420 / 2)), behavior: 'smooth' })
+        }
+        return next
+      })
+    }, 3200)
+    return () => clearInterval(id)
+  }, [])
+
+  return (
+    <section style={{ background: 'var(--blue)', paddingBottom: 0, overflow: 'hidden' }}>
+
+      {/* ── Heading + pill points ───────────────────────── */}
+      <div style={{ textAlign: 'center', padding: '60px 28px 32px' }}>
+        <h2
+          className="font-display font-black uppercase"
+          style={{
+            fontSize: 'clamp(1.8rem, 4vw, 2.9rem)',
+            lineHeight: 1.1,
+            color: '#ffffff',
+            marginBottom: '28px',
+            letterSpacing: '-0.01em',
+            maxWidth: '820px',
+            margin: '0 auto 28px',
+          }}
+        >
+          MAXIMEDIA DELIVERS STRATEGIC SOCIAL<br />MARKETING THAT CONVERTS
+        </h2>
+
+        {/* Three yellow-bold pill points */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '40px',
+          flexWrap: 'wrap',
+          marginBottom: '44px',
+        }}>
+          {PILL_POINTS.map((pt) => (
+            <div key={pt.bold} style={{ textAlign: 'center', maxWidth: '220px' }}>
+              <span style={{ fontWeight: 900, color: 'var(--yellow)', fontSize: '0.8rem', letterSpacing: '0.04em' }}>
+                {pt.bold}
+              </span>
+              <span style={{ color: 'rgba(255,255,255,0.82)', fontSize: '0.8rem', letterSpacing: '0.04em' }}>
+                {' '}{pt.rest}
+              </span>
             </div>
-          </Reveal>
+          ))}
         </div>
       </div>
+
+      {/* ── Full-width portfolio slider ─────────────────── */}
+      <div>
+        <div
+          ref={trackRef}
+          style={{
+            display: 'flex',
+            gap: '16px',
+            overflowX: 'auto',
+            scrollbarWidth: 'none',
+            scrollSnapType: 'x mandatory',
+            WebkitOverflowScrolling: 'touch',
+            paddingLeft:  'max(28px, calc((100vw - 1240px) / 2 + 28px))',
+            paddingRight: 'max(28px, calc((100vw - 1240px) / 2 + 28px))',
+            alignItems: 'flex-end',
+          }}
+        >
+          {PORTFOLIO_CARDS.map((card, i) => {
+            const isActive = i === active
+            return (
+              <div
+                key={i}
+                onClick={() => !isActive && scrollToIdx(i)}
+                style={{
+                  flex:           '0 0 420px',
+                  width:          '420px',
+                  height:         isActive ? '360px' : '300px',
+                  scrollSnapAlign:'center',
+                  cursor:         isActive ? 'default' : 'pointer',
+                  borderRadius:   '20px 20px 0 0',
+                  overflow:       'hidden',
+                  background:     card.bg,
+                  borderTop:      isActive ? '2px solid rgba(255,255,255,0.5)' : '2px solid rgba(255,255,255,0.12)',
+                  borderLeft:     isActive ? '2px solid rgba(255,255,255,0.5)' : '2px solid rgba(255,255,255,0.12)',
+                  borderRight:    isActive ? '2px solid rgba(255,255,255,0.5)' : '2px solid rgba(255,255,255,0.12)',
+                  borderBottom:   'none',
+                  transition:     'all 0.4s ease',
+                  transform:      isActive ? 'translateY(0)' : 'translateY(20px)',
+                  opacity:        isActive ? 1 : 0.72,
+                  position:       'relative',
+                  display:        'flex',
+                  alignItems:     'center',
+                  justifyContent: 'center',
+                  boxShadow:      isActive ? '0 -12px 40px rgba(0,0,0,0.25)' : 'none',
+                  flexShrink:     0,
+                }}
+              >
+                {/* Big emoji */}
+                <span style={{
+                  fontSize:   isActive ? '7rem' : '5rem',
+                  filter:     'drop-shadow(0 8px 20px rgba(0,0,0,0.3))',
+                  transition: 'font-size 0.4s ease',
+                  lineHeight: 1,
+                }}>
+                  {card.emoji}
+                </span>
+
+                {/* Brand label */}
+                <div style={{
+                  position:   'absolute',
+                  bottom:     '14px',
+                  left:       '16px',
+                  background: 'rgba(0,0,0,0.45)',
+                  backdropFilter: 'blur(8px)',
+                  borderRadius: '8px',
+                  padding:    '5px 12px',
+                  fontSize:   '0.68rem',
+                  fontWeight: 800,
+                  color:      card.accent,
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase' as const,
+                  border:     '1px solid rgba(255,255,255,0.15)',
+                }}>
+                  {card.label}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
     </section>
   )
 }
