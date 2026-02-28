@@ -1,42 +1,333 @@
-import Reveal from '@/components/ui/Reveal'
-import ContactForm from '@/components/ui/Contactform'
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+
+const SERVICES_LIST = [
+  'Social Media Strategy',
+  'Social Selling',
+  'Social Media Management',
+  'Data Analysis & ROI Modeling',
+  'Community Management',
+  'Paid Social Advertising',
+  'Influencer Marketing',
+  'Content Production',
+]
+
+const BUDGET_OPTIONS = [
+  'Under $1,000 / month',
+  '$1,000 – $3,000 / month',
+  '$3,000 – $5,000 / month',
+  '$5,000 – $10,000 / month',
+  '$10,000+ / month',
+]
 
 export default function ContactSection() {
+  const [checked, setChecked] = useState<string[]>([])
+  const [agreed, setAgreed]   = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+
+  const toggleService = (s: string) =>
+    setChecked((prev) =>
+      prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]
+    )
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitted(true)
+  }
+
+  const inputStyle: React.CSSProperties = {
+    width: '100%',
+    padding: '13px 16px',
+    borderRadius: '8px',
+    border: '1.5px solid rgba(26,86,219,0.2)',
+    background: '#ffffff',
+    color: '#0c1a4e',
+    fontSize: '0.88rem',
+    outline: 'none',
+    fontFamily: 'inherit',
+    transition: 'border-color 0.2s',
+  }
+
   return (
-    <section className="section" id="contact">
-      <div className="container">
-        <div className="grid lg:grid-cols-2 gap-[72px] items-start">
-          <Reveal>
-            <div className="eyebrow">Get In Touch</div>
-            <h2 style={{ fontSize: 'clamp(1.9rem, 3.5vw, 2.9rem)' }}>
-              Have Questions? Contact Us Directly
+    <section
+      id="contact"
+      style={{
+        background: '#d6eaf8',
+        padding: '90px 0 100px',
+        overflow: 'hidden',
+        position: 'relative',
+      }}
+    >
+      {/* Subtle arc decoration */}
+      <div aria-hidden style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none',
+        backgroundImage: 'radial-gradient(ellipse 70% 90% at 0% 50%, rgba(26,86,219,0.06) 0%, transparent 60%)',
+      }} />
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1.6fr',
+          gap: '64px',
+          alignItems: 'start',
+        }}>
+
+          {/* ── LEFT ────────────────────────────────────── */}
+          <div>
+            <h2
+              className="font-display font-black uppercase"
+              style={{ fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', lineHeight: 1.08, marginBottom: '4px', color: 'var(--blue)' }}
+            >
+              HAVE QUESTIONS?
             </h2>
-            <p className="my-4 text-[0.93rem] leading-[1.8]" style={{ color: 'var(--text-secondary)' }}>
-              We&apos;d love to hear about your organization&apos;s goals on social media.
-              Get in touch with us today!
+            <h2
+              className="font-display font-black uppercase"
+              style={{
+                fontSize: 'clamp(1.8rem, 3vw, 2.4rem)',
+                lineHeight: 1.08,
+                color: 'var(--yellow)',
+                textDecoration: 'underline',
+                textDecorationColor: 'var(--yellow)',
+                textDecorationThickness: '4px',
+                textUnderlineOffset: '6px',
+                marginBottom: '20px',
+              }}
+            >
+              CONTACT US DIRECTLY
+            </h2>
+
+            <p style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--blue)', lineHeight: 1.65, marginBottom: '24px', maxWidth: 340 }}>
+              We&apos;d love to hear about your organization&apos;s goals on social media. Get in touch with us today!
             </p>
+
+            {/* Big email */}
             <a
               href="mailto:info@maximedia.com"
-              className="inline-flex items-center gap-2.5 font-bold text-[1rem]"
-              style={{ color: 'var(--green)' }}
+              className="font-display font-black uppercase"
+              style={{
+                fontSize: 'clamp(1.1rem, 2.5vw, 1.6rem)',
+                color: 'rgba(26,86,219,0.35)',
+                letterSpacing: '0.02em',
+                lineHeight: 1,
+                display: 'block',
+                marginBottom: '48px',
+                transition: 'color 0.2s',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--blue)')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(26,86,219,0.35)')}
             >
-              📧 info@maximedia.com
+              INFO@MAXIMEDIA.COM
             </a>
-            <div
-              className="mt-7 p-[20px_22px] rounded-[14px] text-[0.84rem] leading-[1.85]"
-              style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', color: 'var(--text-secondary)' }}
-            >
-              <strong className="block mb-1.5" style={{ color: 'rgba(255,255,255,0.8)' }}>
-                📍 MAXIMEDIA: THE Social Media Agency
-              </strong>
-              Your Address Here, Suite 100<br />
-              City, State ZIP<br />
-              (000) 000-0000
+
+            {/* 3D person illustration placeholder */}
+            <div style={{
+              width: '220px',
+              height: '220px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #1a56db, #1341b5)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '7rem',
+              boxShadow: '0 24px 60px rgba(26,86,219,0.3)',
+            }}>
+              👤
             </div>
-          </Reveal>
-          <Reveal delay={2}>
-            <ContactForm />
-          </Reveal>
+          </div>
+
+          {/* ── RIGHT: Form ──────────────────────────────── */}
+          <div>
+            {submitted ? (
+              <div style={{
+                background: '#fff',
+                borderRadius: '16px',
+                padding: '56px 40px',
+                textAlign: 'center',
+                border: '2px solid rgba(26,86,219,0.2)',
+              }}>
+                <div style={{ fontSize: '4rem', marginBottom: '16px' }}>🎉</div>
+                <h3 className="font-display font-black" style={{ fontSize: '1.6rem', color: 'var(--blue)', marginBottom: '12px' }}>
+                  Thanks! We'll be in touch soon.
+                </h3>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.93rem' }}>
+                  We've received your request and will respond within 1 business day.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+
+                {/* Row 1: First / Last name */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                  <input required type="text" placeholder="First name*" style={inputStyle}
+                    onFocus={(e) => (e.target.style.borderColor = 'var(--blue)')}
+                    onBlur={(e) => (e.target.style.borderColor = 'rgba(26,86,219,0.2)')} />
+                  <input required type="text" placeholder="Last name*" style={inputStyle}
+                    onFocus={(e) => (e.target.style.borderColor = 'var(--blue)')}
+                    onBlur={(e) => (e.target.style.borderColor = 'rgba(26,86,219,0.2)')} />
+                </div>
+
+                {/* Row 2: Email / Company */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                  <input required type="email" placeholder="Email*" style={inputStyle}
+                    onFocus={(e) => (e.target.style.borderColor = 'var(--blue)')}
+                    onBlur={(e) => (e.target.style.borderColor = 'rgba(26,86,219,0.2)')} />
+                  <input required type="text" placeholder="Company name*" style={inputStyle}
+                    onFocus={(e) => (e.target.style.borderColor = 'var(--blue)')}
+                    onBlur={(e) => (e.target.style.borderColor = 'rgba(26,86,219,0.2)')} />
+                </div>
+
+                {/* Phone */}
+                <input type="tel" placeholder="Phone: +1 (123) 123-4567 *" style={inputStyle}
+                  onFocus={(e) => (e.target.style.borderColor = 'var(--blue)')}
+                  onBlur={(e) => (e.target.style.borderColor = 'rgba(26,86,219,0.2)')} />
+
+                {/* Budget dropdown */}
+                <div style={{ position: 'relative' }}>
+                  <select
+                    style={{ ...inputStyle, appearance: 'none', cursor: 'pointer', paddingRight: '40px' }}
+                    onFocus={(e) => (e.target.style.borderColor = 'var(--blue)')}
+                    onBlur={(e) => (e.target.style.borderColor = 'rgba(26,86,219,0.2)')}
+                    defaultValue=""
+                  >
+                    <option value="" disabled>Budget</option>
+                    {BUDGET_OPTIONS.map((b) => <option key={b}>{b}</option>)}
+                  </select>
+                  {/* Chevron */}
+                  <div style={{
+                    position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)',
+                    width: '24px', height: '24px', borderRadius: '6px',
+                    background: 'var(--blue)', display: 'flex', alignItems: 'center',
+                    justifyContent: 'center', color: '#fff', fontSize: '0.7rem', pointerEvents: 'none',
+                  }}>▾</div>
+                </div>
+                <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '-4px' }}>*</p>
+
+                {/* Services checkboxes */}
+                <div>
+                  <p style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--blue)', marginBottom: '12px' }}>
+                    Services requested
+                  </p>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 24px' }}>
+                    {SERVICES_LIST.map((s) => (
+                      <label
+                        key={s}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          cursor: 'pointer',
+                          fontSize: '0.85rem',
+                          color: 'var(--text-secondary)',
+                          userSelect: 'none',
+                        }}
+                      >
+                        {/* Custom checkbox */}
+                        <div
+                          onClick={() => toggleService(s)}
+                          style={{
+                            width: '16px',
+                            height: '16px',
+                            borderRadius: '4px',
+                            border: `2px solid ${checked.includes(s) ? 'var(--blue)' : 'rgba(26,86,219,0.3)'}`,
+                            background: checked.includes(s) ? 'var(--blue)' : '#fff',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexShrink: 0,
+                            transition: 'all 0.15s',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          {checked.includes(s) && (
+                            <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
+                              <path d="M1 3.5L3.5 6L8 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          )}
+                        </div>
+                        <span onClick={() => toggleService(s)}>{s}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Comments textarea */}
+                <textarea
+                  required
+                  placeholder="Project related comments (Required) *"
+                  rows={4}
+                  style={{ ...inputStyle, resize: 'vertical', minHeight: '100px' }}
+                  onFocus={(e) => (e.target.style.borderColor = 'var(--blue)')}
+                  onBlur={(e) => (e.target.style.borderColor = 'rgba(26,86,219,0.2)')}
+                />
+
+                {/* Consent checkbox */}
+                <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer' }}>
+                  <div
+                    onClick={() => setAgreed(!agreed)}
+                    style={{
+                      width: '16px',
+                      height: '16px',
+                      borderRadius: '4px',
+                      border: `2px solid ${agreed ? 'var(--blue)' : 'rgba(26,86,219,0.3)'}`,
+                      background: agreed ? 'var(--blue)' : '#fff',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0,
+                      marginTop: '2px',
+                      transition: 'all 0.15s',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {agreed && (
+                      <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
+                        <path d="M1 3.5L3.5 6L8 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    )}
+                  </div>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                    I agree to receive communications from MAXIMEDIA, including emails and SMS messages related to my inquiry.
+                    Message and data rates may apply. You can unsubscribe at any time by clicking the link in emails or
+                    replying STOP to SMS. Consent is not a condition of purchase.
+                  </span>
+                </label>
+
+                {/* Yellow SUBMIT button */}
+                <div>
+                  <button
+                    type="submit"
+                    className="font-display font-black uppercase"
+                    style={{
+                      padding: '18px 48px',
+                      background: 'var(--yellow)',
+                      color: '#0c1a4e',
+                      border: 'none',
+                      borderRadius: '10px',
+                      fontSize: '1rem',
+                      letterSpacing: '0.08em',
+                      cursor: 'pointer',
+                      boxShadow: '0 8px 24px rgba(245,197,24,0.4)',
+                      transition: 'all 0.2s ease',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'var(--yellow-dark)'
+                      e.currentTarget.style.transform = 'translateY(-2px)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'var(--yellow)'
+                      e.currentTarget.style.transform = 'translateY(0)'
+                    }}
+                  >
+                    SUBMIT
+                  </button>
+                </div>
+
+              </form>
+            )}
+          </div>
+
         </div>
       </div>
     </section>
