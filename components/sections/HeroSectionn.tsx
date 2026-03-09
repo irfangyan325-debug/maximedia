@@ -4,14 +4,10 @@ import { CLIENT_LOGOS } from '@/lib/data'
 export default function HeroSection() {
   return (
     <>
-      {/* ══════════════════════════════════════════════════
-          HERO — white bg, left text, right phone + blue blob
-      ══════════════════════════════════════════════════ */}
       <section
         style={{
           background: '#ffffff',
           paddingTop: 'var(--nav-h)',
-          minHeight: '100vh',
           display: 'flex',
           alignItems: 'center',
           overflow: 'hidden',
@@ -24,56 +20,46 @@ export default function HeroSection() {
         <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%' }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '48px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '40px',
             alignItems: 'center',
-            padding: '80px 0',
+            padding: 'clamp(40px, 8vw, 100px) 0',
           }}>
 
             {/* ── LEFT: Copy ──────────────────────────────── */}
-            <div>
-              {/* Main headline — matches screenshot exactly */}
+            <div style={{ order: 1 }}>
               <h1
                 className="font-display font-black uppercase"
                 style={{
-                  fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)',
+                  fontSize: 'clamp(1.9rem, 5vw, 3.5rem)',
                   lineHeight: 1.08,
                   letterSpacing: '-0.01em',
                   marginBottom: '0',
                 }}
               >
-                {/* Line 1 — blue */}
                 <span style={{ color: 'var(--blue)', display: 'block' }}>
                   YOUR RESULTS-DRIVEN
                 </span>
-                {/* Line 2 — yellow with underline */}
                 <span style={{
                   color: 'var(--yellow)',
                   display: 'block',
                   textDecoration: 'underline',
                   textDecorationColor: 'var(--yellow)',
-                  textDecorationThickness: '5px',
+                  textDecorationThickness: '4px',
                   textUnderlineOffset: '6px',
                 }}>
                   SOCIAL MARKETING
                 </span>
-                {/* Line 3 — blue */}
-                <span style={{ color: 'var(--blue)', display: 'block' }}>
-                  AGENCY FOR
-                </span>
-                {/* Line 4 — blue */}
-                <span style={{ color: 'var(--blue)', display: 'block' }}>
-                  MEASURABLE GROWTH
-                </span>
+                <span style={{ color: 'var(--blue)', display: 'block' }}>AGENCY FOR</span>
+                <span style={{ color: 'var(--blue)', display: 'block' }}>MEASURABLE GROWTH</span>
               </h1>
 
-              {/* Subtext */}
               <p style={{
-                fontSize: '1rem',
+                fontSize: 'clamp(0.88rem, 2vw, 1rem)',
                 color: 'rgba(12,26,78,0.7)',
                 lineHeight: 1.75,
                 maxWidth: '460px',
-                margin: '24px 0 32px',
+                margin: 'clamp(16px, 3vw, 24px) 0 clamp(20px, 4vw, 32px)',
               }}>
                 <strong style={{ color: 'var(--blue)', fontWeight: 800 }}>
                   Stop Guessing, Start Growing:
@@ -81,22 +67,22 @@ export default function HeroSection() {
                 Partner with a Social Marketing Agency Focused on Your Bottom Line
               </p>
 
-              {/* Yellow CTA button — exact match */}
               <Link
                 href="#contact"
                 className="font-display font-black uppercase"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  padding: '16px 32px',
+                  padding: 'clamp(12px, 2vw, 16px) clamp(20px, 3vw, 32px)',
                   background: 'var(--yellow)',
                   color: '#0c1a4e',
                   borderRadius: '10px',
-                  fontSize: '0.82rem',
+                  fontSize: 'clamp(0.72rem, 1.5vw, 0.82rem)',
                   letterSpacing: '0.1em',
                   textDecoration: 'none',
                   boxShadow: '0 6px 24px rgba(245,197,24,0.4)',
                   transition: 'all 0.2s ease',
+                  whiteSpace: 'nowrap',
                 }}
               >
                 LET&apos;S DRIVE GROWTH TOGETHER
@@ -104,38 +90,42 @@ export default function HeroSection() {
             </div>
 
             {/* ── RIGHT: Phone + blue blob ─────────────────── */}
-            <div style={{
-              position: 'relative',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              minHeight: '520px',
-            }}>
-              {/* Blue blob behind phone */}
+            {/* Hidden on very small screens, shown from sm up */}
+            <div
+              className="hero-phone-col"
+              style={{
+                position: 'relative',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                minHeight: 'clamp(320px, 50vw, 520px)',
+                order: 2,
+              }}
+            >
+              {/* Blue blob */}
               <div style={{
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-40%, -50%)',
-                width: '420px',
-                height: '420px',
+                width: 'clamp(240px, 40vw, 420px)',
+                height: 'clamp(240px, 40vw, 420px)',
                 borderRadius: '50%',
                 background: 'var(--blue)',
                 zIndex: 0,
               }} />
 
-              {/* Phone outline — matches the thin line-art style */}
+              {/* Phone frame */}
               <div style={{
                 position: 'relative',
                 zIndex: 1,
-                width: '240px',
-                height: '490px',
+                width: 'clamp(160px, 22vw, 240px)',
+                height: 'clamp(326px, 45vw, 490px)',
               }}>
-                {/* Outer frame — thin black outline like screenshot */}
                 <div style={{
                   width: '100%',
                   height: '100%',
-                  borderRadius: '36px',
+                  borderRadius: 'clamp(24px, 4vw, 36px)',
                   border: '3px solid #0c1a4e',
                   background: '#fff',
                   overflow: 'hidden',
@@ -148,14 +138,14 @@ export default function HeroSection() {
                     top: '10px',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    width: '80px',
-                    height: '20px',
+                    width: 'clamp(50px, 8vw, 80px)',
+                    height: '18px',
                     borderRadius: '20px',
                     background: '#0c1a4e',
                     zIndex: 10,
                   }} />
 
-                  {/* Screen — photo-like content */}
+                  {/* Screen */}
                   <div style={{
                     position: 'absolute',
                     inset: 0,
@@ -167,7 +157,7 @@ export default function HeroSection() {
                     paddingTop: '36px',
                     overflow: 'hidden',
                   }}>
-                    {/* Simulated social post image */}
+                    {/* Post image */}
                     <div style={{
                       width: '86%',
                       height: '58%',
@@ -177,7 +167,7 @@ export default function HeroSection() {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontSize: '4rem',
+                      fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                       marginBottom: '12px',
                     }}>
                       🏖️
@@ -193,34 +183,23 @@ export default function HeroSection() {
                       justifyContent: 'space-between',
                       alignItems: 'center',
                     }}>
-                      <div style={{ display: 'flex', gap: '10px' }}>
+                      <div style={{ display: 'flex', gap: '8px' }}>
                         {['❤️', '💬', '↗️'].map((ic) => (
-                          <span key={ic} style={{ fontSize: '0.9rem' }}>{ic}</span>
+                          <span key={ic} style={{ fontSize: '0.85rem' }}>{ic}</span>
                         ))}
                       </div>
-                      <span style={{
-                        fontSize: '0.6rem',
-                        fontWeight: 800,
-                        color: 'var(--blue)',
-                      }}>
+                      <span style={{ fontSize: '0.58rem', fontWeight: 800, color: 'var(--blue)' }}>
                         100K+ views
                       </span>
                     </div>
 
-                    {/* Username */}
-                    <div style={{
-                      marginTop: '8px',
-                      fontSize: '0.6rem',
-                      fontWeight: 700,
-                      color: '#0c1a4e',
-                      opacity: 0.7,
-                    }}>
+                    <div style={{ marginTop: '8px', fontSize: '0.58rem', fontWeight: 700, color: '#0c1a4e', opacity: 0.7 }}>
                       @maximedia
                     </div>
                   </div>
                 </div>
 
-                {/* Shadow line under phone (like screenshot's thin line-art shadow) */}
+                {/* Shadow under phone */}
                 <div style={{
                   position: 'absolute',
                   bottom: '-16px',
@@ -238,14 +217,12 @@ export default function HeroSection() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════
-          CLIENT LOGOS MARQUEE — plain white, greyed logos
-      ══════════════════════════════════════════════════ */}
+      {/* ── Client Logos Marquee ── */}
       <div style={{
         background: '#ffffff',
         borderTop: '1px solid rgba(26,86,219,0.08)',
         borderBottom: '1px solid rgba(26,86,219,0.08)',
-        padding: '28px 0',
+        padding: 'clamp(18px, 3vw, 28px) 0',
         overflow: 'hidden',
       }}>
         <div className="marquee-track">
@@ -253,12 +230,12 @@ export default function HeroSection() {
             <span
               key={i}
               style={{
-                padding: '0 36px',
+                padding: '0 clamp(16px, 3vw, 36px)',
                 height: '36px',
                 display: 'inline-flex',
                 alignItems: 'center',
                 fontFamily: 'var(--font-display)',
-                fontSize: '0.82rem',
+                fontSize: 'clamp(0.65rem, 1.5vw, 0.82rem)',
                 fontWeight: 700,
                 letterSpacing: '0.04em',
                 color: 'rgba(12,26,78,0.22)',
@@ -272,6 +249,21 @@ export default function HeroSection() {
           ))}
         </div>
       </div>
+
+      {/* ── Responsive styles ── */}
+      <style>{`
+        /* Mobile: stack vertically, hide phone on very small screens */
+        @media (max-width: 480px) {
+          .hero-phone-col { display: none !important; }
+        }
+
+        /* Tablet: show phone but smaller */
+        @media (max-width: 768px) {
+          .hero-phone-col {
+            min-height: 280px !important;
+          }
+        }
+      `}</style>
     </>
   )
 }

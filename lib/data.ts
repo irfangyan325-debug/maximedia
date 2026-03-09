@@ -1,7 +1,3 @@
-// ══════════════════════════════════════════
-// MAXIMEDIA — Site Data
-// Edit this file to update all content
-// ══════════════════════════════════════════
 
 export const SITE = {
   name: 'MAXIMEDIA',
@@ -26,7 +22,7 @@ export const NAV_LINKS = [
     children: [
       { label: 'About Us', href: '/about' },
       { label: 'Careers', href: '/careers' },
-      { label: 'Our Team', href: '/about#team' },
+      { label: 'Our Team', href: '/team' },
     ],
   },
   {
