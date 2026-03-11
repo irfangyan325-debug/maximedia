@@ -3,14 +3,14 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 
 const PORTFOLIO_CARDS = [
-  { bg: 'linear-gradient(145deg, #87ceeb, #4a90d9)', emoji: '⚾', label: "Dick's Sporting Goods", accent: '#ff6b35' },
-  { bg: 'linear-gradient(145deg, #c8a870, #a0854a)', emoji: '🍔', label: "Beef O'Brady's",         accent: '#f5c518' },
-  { bg: 'linear-gradient(145deg, #f0e8d8, #d4c4a0)', emoji: '🐯', label: "Dick's Sporting Goods",  accent: '#c0392b' },
-  { bg: 'linear-gradient(145deg, #e8b4b8, #c0454c)', emoji: '💪', label: 'A3C Festival',            accent: '#f5c518' },
-  { bg: 'linear-gradient(145deg, #1a56db, #0d3a9e)', emoji: '📱', label: 'Samsung',                 accent: '#f5c518' },
-  { bg: 'linear-gradient(145deg, #2ecc71, #1a8a4a)', emoji: '🏠', label: 'Angi',                    accent: '#fff'    },
-  { bg: 'linear-gradient(145deg, #9b59b6, #6c3483)', emoji: '🎵', label: 'Carnival',                 accent: '#f5c518' },
-  { bg: 'linear-gradient(145deg, #e67e22, #ca6f1e)', emoji: '🎯', label: 'SHOKZ',                    accent: '#fff'    },
+  { bg: 'white', emoji: '⚾', label: "Dick's Sporting Goods", accent: '#ff6b35' },
+  { bg: 'white', emoji: '🍔', label: "Beef O'Brady's",         accent: '#f5c518' },
+  { bg: 'white', emoji: '🐯', label: "Dick's Sporting Goods",  accent: '#c0392b' },
+  { bg: 'white', emoji: '💪', label: 'A3C Festival',            accent: '#f5c518' },
+  { bg: 'white', emoji: '📱', label: 'Samsung',                 accent: '#f5c518' },
+  { bg: 'white', emoji: '🏠', label: 'Angi',                    accent: '#fff'    },
+  { bg: 'white', emoji: '🎵', label: 'Carnival',                 accent: '#f5c518' },
+  { bg: 'white', emoji: '🎯', label: 'SHOKZ',                    accent: '#fff'    },
 ]
 
 const PILL_POINTS = [
@@ -60,7 +60,6 @@ export default function DeliversSection() {
             color: '#ffffff',
             marginBottom: '28px',
             letterSpacing: '-0.01em',
-            maxWidth: '820px',
             margin: '0 auto 28px',
           }}
         >
@@ -76,11 +75,11 @@ export default function DeliversSection() {
           marginBottom: '44px',
         }}>
           {PILL_POINTS.map((pt) => (
-            <div key={pt.bold} style={{ textAlign: 'center', maxWidth: '220px' }}>
-              <span style={{ fontWeight: 900, color: 'var(--yellow)', fontSize: '0.8rem', letterSpacing: '0.04em' }}>
+            <div key={pt.bold} style={{ textAlign: 'center', maxWidth: '320px' }}>
+              <span style={{ fontWeight: 900, color: 'var(--yellow)', fontSize: '1.0rem', letterSpacing: '0.04em' }}>
                 {pt.bold}
               </span>
-              <span style={{ color: 'rgba(255,255,255,0.82)', fontSize: '0.8rem', letterSpacing: '0.04em' }}>
+              <span style={{ color: 'rgba(255,255,255,0.82)', fontSize: '1.0rem', letterSpacing: '0.04em' }}>
                 {' '}{pt.rest}
               </span>
             </div>
@@ -136,7 +135,7 @@ export default function DeliversSection() {
               >
                 {/* Big emoji */}
                 <span style={{
-                  fontSize:   isActive ? '7rem' : '5rem',
+                  fontSize:   isActive ? '20rem' : '15rem',
                   filter:     'drop-shadow(0 8px 20px rgba(0,0,0,0.3))',
                   transition: 'font-size 0.4s ease',
                   lineHeight: 1,

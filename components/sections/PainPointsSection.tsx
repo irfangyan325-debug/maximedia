@@ -44,7 +44,6 @@ export default function PainPointsSection() {
               lineHeight: 1.1,
               color: 'var(--blue)',
               textAlign: 'center',
-              maxWidth: '780px',
               margin: '0 auto clamp(32px,5vw,52px)',
               letterSpacing: '-0.01em',
             }}
@@ -63,18 +62,12 @@ export default function PainPointsSection() {
                   borderRadius: '16px',
                   padding: 'clamp(18px,3vw,28px) clamp(14px,2vw,20px) clamp(16px,2.5vw,24px)',
                   textAlign: 'center',
-                  boxShadow: '0 4px 20px rgba(26,86,219,0.06)',
+                  boxShadow: '0 4px 20px rgba(219, 26, 26, 0.06)',
                   position: 'relative',
                   overflow: 'hidden',
                 }}
               >
-                {/* Corner accent */}
-                <div style={{
-                  position: 'absolute', bottom: 0, right: 0,
-                  width: '60px', height: '60px',
-                  background: 'var(--blue)', borderRadius: '14px 0 14px 0', opacity: 0.1,
-                }} />
-
+                
                 {/* Icon */}
                 <div style={{
                   fontSize: 'clamp(2rem,4vw,3.2rem)',
