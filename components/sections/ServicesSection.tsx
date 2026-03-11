@@ -13,12 +13,12 @@ const SERVICE_ICONS: Record<string, string> = {
 }
 
 const CARD_BG: Record<string, string> = {
-  'strategy':   'rgba(255,220,180,0.25)',
-  'content':    'rgba(180,220,255,0.25)',
-  'management': 'rgba(180,200,255,0.25)',
-  'paid':       'rgba(180,240,200,0.2)',
-  'influencer': 'rgba(220,180,255,0.2)',
-  'selling':    'rgba(255,200,220,0.2)',
+  'strategy':   'rgba(255, 255, 255, 0.25)',
+  'content':    'rgba(255, 255, 255, 0.25)',
+  'management': 'rgba(255, 255, 255, 0.25)',
+  'paid':       'rgba(255, 255, 255, 0.2)',
+  'influencer': 'rgba(255, 255, 255, 0.2)',
+  'selling':    'rgba(255, 255, 255, 0.2)',
 }
 
 export default function ServicesSection() {
@@ -59,13 +59,13 @@ export default function ServicesSection() {
           {/* Heading */}
           <div style={{ textAlign: 'center', marginBottom: 'clamp(32px,5vw,52px)' }}>
             <h2 className="font-display font-black uppercase" style={{
-              fontSize: 'clamp(1.4rem,4vw,2.6rem)', lineHeight: 1.1,
+              fontSize: 'clamp(2.8rem,4vw,2.6rem)', lineHeight: 1.1,
               color: 'var(--blue)', marginBottom: '6px', letterSpacing: '-0.01em',
             }}>
               OUR COMPREHENSIVE SOCIAL MEDIA MARKETING
             </h2>
             <h2 className="font-display font-black uppercase" style={{
-              fontSize: 'clamp(1.4rem,4vw,2.6rem)', lineHeight: 1.1,
+              fontSize: 'clamp(2.8rem,4vw,2.6rem)', lineHeight: 1.1,
               color: 'var(--yellow)',
               textDecoration: 'underline', textDecorationColor: 'var(--yellow)',
               textDecorationThickness: '5px', textUnderlineOffset: '7px',
@@ -103,7 +103,8 @@ export default function ServicesSection() {
               >
                 {/* Icon */}
                 <div style={{
-                  fontSize: 'clamp(2rem,4vw,2.8rem)', marginBottom: '14px',
+                  fontSize: 'clamp(8.0rem,4vw,3.8rem)', marginBottom: '14px', textAlign: 'center',
+                  
                   filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.15))', lineHeight: 1,
                 }}>
                   {SERVICE_ICONS[s.id] ?? s.icon}
@@ -111,7 +112,7 @@ export default function ServicesSection() {
 
                 {/* Title */}
                 <h3 className="font-display font-black uppercase" style={{
-                  fontSize: 'clamp(0.82rem,1.4vw,0.98rem)', lineHeight: 1.25,
+                  fontSize: 'clamp(1.3rem,1.4vw,1.4rem)', lineHeight: 1.25,
                   color: 'var(--blue)', marginBottom: '12px', letterSpacing: '0.01em',
                 }}>
                   {s.title}
@@ -122,7 +123,7 @@ export default function ServicesSection() {
                   {s.points.map(p => (
                     <li key={p} style={{
                       display: 'flex', alignItems: 'flex-start', gap: '8px',
-                      fontSize: 'clamp(0.78rem,1.2vw,0.83rem)',
+                      fontSize: 'clamp(1.2rem,1.4vw,1.5rem)',
                       color: 'rgba(12,26,78,0.65)', lineHeight: 1.5,
                     }}>
                       <span style={{
