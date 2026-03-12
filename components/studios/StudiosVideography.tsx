@@ -1,137 +1,167 @@
-const INCLUDED = [
-  { icon: '🎭', title: 'Creative Direction',  desc: 'Don\'t know where to start? Let our on-site Creative Director guide the way.' },
-  { icon: '✂️', title: 'Pro Editing',          desc: 'All-inclusive editing and production with up to 3 rounds of revisions.' },
-  { icon: '🎵', title: 'Audio & SFX',          desc: 'We source and provide all background audio and SFX needed. All rights included.' },
-  { icon: '🌟', title: 'Talent',               desc: 'Our diverse network of talent includes that perfect match for your brand.' },
-  { icon: '💄', title: 'Hair & Makeup',        desc: 'Hair & makeup customized to follow your brand\'s vision.' },
-  { icon: '🎪', title: 'Styled Set',            desc: 'Each set is styled with hand-picked props to make your brand seen loud and clear.' },
+const ITEMS = [
+  {
+    title: 'CREATIVE DIRECTION',
+    desc: "Don't know where to start? Let our on-site Creative Director guide the way.",
+    icon: '🎨',
+  },
+  {
+    title: 'PRO EDITING',
+    desc: 'All inclusive editing and production with up to 3 rounds of revisions.',
+    icon: '✏️',
+  },
+  {
+    title: 'AUDIO & SFX',
+    desc: 'We source and provide all background audio and sfx needed to make your video shine. All rights included.',
+    icon: '🔊',
+  },
+  {
+    title: 'TALENT',
+    desc: 'We work with the best of the best. Our diverse network of talent includes that perfect match for your brand.',
+    icon: '🎤',
+  },
+  {
+    title: 'HAIR & MAKEUP',
+    desc: "Hair & makeup can always be customized to follow your brand's vision.",
+    icon: '💄',
+  },
+  {
+    title: 'STYLED SET',
+    desc: 'Each set is styled with hand-picked props and dressing to make sure your brand is seen loud and clear.',
+    icon: '🪮',
+  },
 ]
 
-export default function StudiosVideography() {
+export default function StudiosHowItWorks() {
   return (
     <>
       <style>{`
-        .sv-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: clamp(32px,5vw,72px);
-          align-items: center;
-          margin-bottom: clamp(56px,8vw,88px);
+        .swdo-section {
+          background: #ffffff;
+          padding: clamp(64px,9vw,104px) 0;
+          position: relative;
+          overflow: hidden;
         }
-        .sv-included-grid {
+        .swdo-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 16px;
+          gap: clamp(14px,2vw,22px);
+          margin-top: clamp(36px,5vw,56px);
         }
+        /* Card — light blue border + shadow matching screenshot */
+        .swdo-card {
+          background: #ffffff;
+          border: 1.5px solid #b8dff0;
+          border-radius: 16px;
+          padding: clamp(20px,3vw,32px) clamp(20px,2.5vw,28px) clamp(16px,2.5vw,24px);
+          box-shadow: 4px 4px 0px #c9e8f5, 0 2px 12px rgba(26,86,219,0.06);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          min-height: clamp(200px,26vw,280px);
+          position: relative;
+          overflow: hidden;
+          transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .swdo-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 4px 8px 0px #b8dff0, 0 8px 28px rgba(26,86,219,0.1);
+        }
+        .swdo-card-title {
+          font-family: var(--font-display);
+          font-weight: 900;
+          font-style: italic;
+          font-size: clamp(0.92rem,1.6vw,1.1rem);
+          color: var(--blue);
+          letter-spacing: 0.01em;
+          line-height: 1.2;
+          margin-bottom: clamp(8px,1.5vw,14px);
+          text-transform: uppercase;
+        }
+        .swdo-card-desc {
+          font-size: clamp(0.82rem,1.3vw,0.92rem);
+          color: rgba(12,26,78,0.68);
+          line-height: 1.75;
+          flex: 1;
+        }
+        /* Big 3D icon bottom-right */
+        .swdo-card-icon {
+          font-size: clamp(2.8rem,5vw,4rem);
+          line-height: 1;
+          text-align: right;
+          margin-top: clamp(12px,2vw,20px);
+          filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.15));
+          display: block;
+        }
+        /* Bottom paragraph */
+        .swdo-bottom-text {
+          text-align: center;
+          font-size: clamp(0.84rem,1.4vw,0.96rem);
+          color: rgba(12,26,78,0.65);
+          line-height: 1.82;
+          max-width: 860px;
+          margin: clamp(40px,6vw,64px) auto 0;
+        }
+
         @media (max-width: 860px) {
-          .sv-grid { grid-template-columns: 1fr; gap: 32px; }
-          .sv-included-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+          .swdo-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
         }
         @media (max-width: 480px) {
-          .sv-included-grid { grid-template-columns: 1fr; gap: 10px; }
+          .swdo-grid { grid-template-columns: 1fr; gap: 12px; }
+          .swdo-card:hover { transform: none; }
         }
       `}</style>
 
-      <section style={{ background: '#ffffff', padding: 'clamp(64px,9vw,104px) 0' }}>
+      <section className="swdo-section">
         <div className="container">
 
-          {/* ── Top: Videography intro ── */}
-          <div className="sv-grid">
-            {/* Left: visual placeholder / phone mockup */}
-            <div style={{
-              background: 'linear-gradient(135deg,#c8d8f5 0%,#dceeff 100%)',
-              borderRadius: 'clamp(18px,3vw,28px)',
-              aspectRatio: '4/5',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 'clamp(4rem,8vw,7rem)',
-              position: 'relative', overflow: 'hidden',
-              boxShadow: '0 20px 56px rgba(26,86,219,0.14)',
-              border: '2px solid rgba(26,86,219,0.1)',
-            }}>
-              <span style={{ filter: 'drop-shadow(0 8px 20px rgba(0,0,0,0.12))' }}>🎬</span>
-              {/* Decorative inner cards */}
-              <div style={{
-                position: 'absolute', bottom: '24px', left: '50%', transform: 'translateX(-50%)',
-                background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(8px)',
-                borderRadius: '12px', padding: '10px 18px', whiteSpace: 'nowrap',
-                boxShadow: '0 4px 16px rgba(26,86,219,0.15)',
-              }}>
-                <p className="font-display font-black uppercase" style={{ fontSize: '0.72rem', color: 'var(--blue)', letterSpacing: '0.06em' }}>MICRO SOCIAL CONTENT</p>
-              </div>
-            </div>
-
-            {/* Right: text */}
-            <div>
-              <p className="font-display font-black uppercase" style={{ fontSize: '0.75rem', letterSpacing: '0.14em', color: 'var(--yellow)', marginBottom: '10px' }}>
-                WHAT WE OFFER
-              </p>
-              <h2 className="font-display font-black uppercase" style={{
-                fontSize: 'clamp(1.8rem,4vw,3rem)', color: 'var(--blue)',
-                lineHeight: 1.0, letterSpacing: '-0.02em', marginBottom: 'clamp(14px,2vw,22px)',
-              }}>
-                VIDEOGRAPHY
-              </h2>
-              <p style={{ fontSize: 'clamp(0.9rem,1.6vw,1.02rem)', color: 'rgba(12,26,78,0.65)', lineHeight: 1.82, marginBottom: '18px' }}>
-                Micro social content for Instagram, YouTube, TikTok, and even your website. We do it all from start to finish, so you can focus on what matters most: growing your brand and revenue.
-              </p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                {['TikTok', 'Reels', 'YouTube Shorts', 'Website Video'].map(tag => (
-                  <span key={tag} className="font-display font-black uppercase" style={{
-                    fontSize: '0.68rem', letterSpacing: '0.08em',
-                    padding: '5px 12px', borderRadius: '100px',
-                    background: 'rgba(26,86,219,0.08)', color: 'var(--blue)',
-                  }}>{tag}</span>
-                ))}
-              </div>
-            </div>
+          {/* Heading */}
+          <div style={{ textAlign: 'center' }}>
+            <h2
+              className="font-display font-black uppercase"
+              style={{
+                fontSize: 'clamp(2.2rem,6vw,4rem)',
+                lineHeight: 1.0,
+                color: 'var(--blue)',
+                letterSpacing: '-0.02em',
+                marginBottom: 'clamp(14px,2vw,22px)',
+              }}
+            >
+              WHAT WE DO
+            </h2>
+            <p
+              style={{
+                fontSize: 'clamp(0.9rem,1.6vw,1.02rem)',
+                color: 'rgba(12,26,78,0.62)',
+                lineHeight: 1.75,
+                maxWidth: '560px',
+                margin: '0 auto',
+              }}
+            >
+              MAXIMEDIA sets the bar high when it comes to quality. And therefore, all of
+              our packages include the following:
+            </p>
           </div>
 
-          {/* ── What We Do: included features ── */}
-          <div>
-            <div style={{ textAlign: 'center', marginBottom: 'clamp(28px,4vw,44px)' }}>
-              <p className="font-display font-black uppercase" style={{ fontSize: '0.75rem', letterSpacing: '0.14em', color: 'var(--blue)', marginBottom: '8px' }}>
-                EVERY PACKAGE INCLUDES
-              </p>
-              <h2 className="font-display font-black uppercase" style={{
-                fontSize: 'clamp(1.5rem,3.5vw,2.4rem)', color: 'var(--blue)',
-                lineHeight: 1.05, letterSpacing: '-0.01em',
-              }}>
-                WHAT WE{' '}
-                <span style={{ color: 'var(--yellow)', textDecoration: 'underline', textDecorationColor: 'var(--yellow)', textDecorationThickness: '4px', textUnderlineOffset: '5px' }}>DO</span>
-              </h2>
-              <p style={{ fontSize: 'clamp(0.88rem,1.5vw,0.97rem)', color: 'rgba(12,26,78,0.55)', marginTop: '10px' }}>
-                We set the bar high. All packages include the following:
-              </p>
-            </div>
-
-            <div className="sv-included-grid">
-              {INCLUDED.map(item => (
-                <div key={item.title} style={{
-                  background: '#f2f5fc',
-                  border: '1.5px solid rgba(26,86,219,0.1)',
-                  borderRadius: '16px',
-                  padding: 'clamp(18px,2.5vw,26px)',
-                }}>
-                  <div style={{
-                    width: '48px', height: '48px', borderRadius: '13px',
-                    background: '#fff',
-                    border: '1.5px solid rgba(26,86,219,0.12)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '1.4rem', marginBottom: '12px',
-                    boxShadow: '0 4px 12px rgba(26,86,219,0.08)',
-                  }}>
-                    {item.icon}
-                  </div>
-                  <h3 className="font-display font-black uppercase" style={{ fontSize: 'clamp(0.78rem,1.2vw,0.88rem)', color: 'var(--blue)', marginBottom: '6px', letterSpacing: '0.02em' }}>
-                    {item.title}
-                  </h3>
-                  <p style={{ fontSize: 'clamp(0.78rem,1.1vw,0.84rem)', color: 'rgba(12,26,78,0.6)', lineHeight: 1.72 }}>
-                    {item.desc}
-                  </p>
+          {/* 3×2 card grid */}
+          <div className="swdo-grid">
+            {ITEMS.map(item => (
+              <div key={item.title} className="swdo-card">
+                <div>
+                  <p className="swdo-card-title">{item.title}</p>
+                  <p className="swdo-card-desc">{item.desc}</p>
                 </div>
-              ))}
-            </div>
+                <span className="swdo-card-icon">{item.icon}</span>
+              </div>
+            ))}
           </div>
+
+          {/* Bottom paragraph — matching screenshot */}
+          <p className="swdo-bottom-text">
+            Stock photography just doesn&apos;t do your product or your business justice. Having styled,
+            professional photos of your actual, real-life products solidifies your brand identity!
+            Photography drives a lot of decision-making. Convert site visitors to customers with one
+            of the most convincing tools at your disposal: great pictures!
+          </p>
 
         </div>
       </section>

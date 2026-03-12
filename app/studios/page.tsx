@@ -17,7 +17,7 @@ export default function StudiosPage() {
       <StudiosHero />
       <StudiosVideography />
       <StudiosHowItWorks />
-      <StudiosPhotoTypes />
+      {/* <StudiosPhotoTypes /> */}
       <StudiosVideoTypes />
       <StudiosTestimonials />
       <StudiosCTA />

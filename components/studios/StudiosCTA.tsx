@@ -4,88 +4,63 @@ export default function StudiosCTA() {
   return (
     <>
       <style>{`
-        .studios-cta-btns {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 14px;
-          justify-content: center;
-          margin-top: clamp(24px,4vw,36px);
+        .scta-section {
+          background: #ffffff;
+          padding: clamp(40px,6vw,72px) 0 clamp(64px,9vw,104px);
         }
-        @media (max-width: 480px) {
-          .studios-cta-btns a { flex: 1; justify-content: center; text-align: center; min-width: 160px; }
+        .scta-card {
+          border: 1.5px solid #b8dff0;
+          border-radius: 22px;
+          box-shadow: 4px 4px 0 #c9e8f5, 0 4px 24px rgba(26,86,219,0.07);
+          padding: clamp(48px,7vw,88px) clamp(32px,6vw,80px);
+          text-align: center;
+          background: #fff;
         }
+        .scta-email {
+          color: var(--blue);
+          text-decoration: underline;
+          text-decoration-thickness: 2px;
+          text-underline-offset: 4px;
+          font-size: clamp(0.9rem,1.6vw,1.05rem);
+          font-weight: 600;
+          transition: opacity 0.15s;
+        }
+        .scta-email:hover { opacity: 0.72; }
       `}</style>
 
-      <section style={{
-        background: 'var(--blue)',
-        padding: 'clamp(64px,9vw,104px) 0',
-        textAlign: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        {/* Glow */}
-        <div aria-hidden style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none',
-          backgroundImage: 'radial-gradient(ellipse 50% 60% at 50% 50%, rgba(245,197,24,0.08) 0%, transparent 60%)',
-        }} />
-        {/* Floating emojis */}
-        <div aria-hidden style={{ position: 'absolute', top: '15%', left: '6%', fontSize: 'clamp(1.5rem,2.5vw,2rem)', opacity: 0.4, pointerEvents: 'none' }}>🎬</div>
-        <div aria-hidden style={{ position: 'absolute', bottom: '18%', right: '6%', fontSize: 'clamp(1.5rem,2.5vw,2rem)', opacity: 0.4, pointerEvents: 'none' }}>📸</div>
+      <section className="scta-section">
+        <div className="container">
+          <div className="scta-card">
 
-        <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '640px' }}>
-          <p className="font-display font-black uppercase" style={{
-            fontSize: '0.75rem', letterSpacing: '0.14em',
-            color: 'rgba(255,255,255,0.55)', marginBottom: '12px',
-          }}>
-            READY TO CREATE?
-          </p>
-          <h2 className="font-display font-black uppercase" style={{
-            fontSize: 'clamp(1.8rem,5vw,3.4rem)',
-            lineHeight: 1.0, letterSpacing: '-0.02em', color: '#fff',
-            marginBottom: 'clamp(12px,2vw,18px)',
-          }}>
-            READY TO CREATE CONTENT THAT{' '}
-            <span style={{
-              color: 'var(--yellow)',
-              textDecoration: 'underline', textDecorationColor: 'var(--yellow)',
-              textDecorationThickness: '4px', textUnderlineOffset: '6px',
+            <h2
+              className="font-display font-black uppercase"
+              style={{
+                fontSize: 'clamp(2rem,5.5vw,4rem)',
+                lineHeight: 1.0,
+                letterSpacing: '-0.02em',
+                color: 'var(--blue)',
+                marginBottom: 'clamp(20px,3vw,32px)',
+              }}
+            >
+              FREQUENTLY ASKED QUESTIONS
+            </h2>
+
+            <p style={{
+              fontSize: 'clamp(0.9rem,1.6vw,1.05rem)',
+              color: 'rgba(12,26,78,0.62)',
+              lineHeight: 1.78,
+              maxWidth: '520px',
+              margin: '0 auto clamp(14px,2vw,20px)',
             }}>
-              CONVERTS?
-            </span>
-          </h2>
-          <p style={{ fontSize: 'clamp(0.9rem,2vw,1rem)', color: 'rgba(255,255,255,0.7)', lineHeight: 1.75 }}>
-            Let&apos;s build a content production plan tailored to your brand, audience, and goals. No fluff — just results.
-          </p>
-          <div className="studios-cta-btns">
-            <Link href="/contact" className="font-display font-black uppercase" style={{
-              display: 'inline-flex', alignItems: 'center',
-              padding: 'clamp(13px,2vw,17px) clamp(24px,4vw,40px)',
-              background: 'var(--yellow)', color: '#0c1a4e',
-              borderRadius: '10px', fontSize: 'clamp(0.74rem,1.4vw,0.84rem)',
-              letterSpacing: '0.1em', textDecoration: 'none',
-              boxShadow: '0 6px 20px rgba(245,197,24,0.4)',
-              border: '2px solid #0c1a4e',
-            }}>
-              GET A CONTENT PROPOSAL →
-            </Link>
-            <Link href="/work" className="font-display font-black uppercase" style={{
-              display: 'inline-flex', alignItems: 'center',
-              padding: 'clamp(13px,2vw,17px) clamp(24px,4vw,40px)',
-              background: 'transparent', color: '#fff',
-              border: '2px solid rgba(255,255,255,0.4)', borderRadius: '10px',
-              fontSize: 'clamp(0.74rem,1.4vw,0.84rem)', letterSpacing: '0.1em',
-              textDecoration: 'none',
-            }}>
-              SEE OUR WORK
-            </Link>
+              Got questions? We&apos;ve got answers. If you have any other questions, feel
+              free to send us an email to
+            </p>
+
+            <a href="mailto:studios@maximedia.com" className="scta-email">
+              studios@maximedia.com
+            </a>
+
           </div>
-        </div>
-
-        {/* Wave bottom */}
-        <div style={{ position: 'absolute', bottom: -2, left: 0, right: 0, lineHeight: 0 }}>
-          <svg viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block', width: '100%' }} preserveAspectRatio="none">
-            <path d="M0,20 C480,40 960,0 1440,20 L1440,40 L0,40 Z" fill="#ffffff" />
-          </svg>
         </div>
       </section>
     </>

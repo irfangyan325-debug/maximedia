@@ -8,7 +8,7 @@ export default function StudiosHero() {
     <>
       <style>{`
         .sh-section {
-          background: #ffffff;
+          background: #0c0496;
           padding-top: var(--nav-h);
           overflow: hidden;
           position: relative;
@@ -128,7 +128,7 @@ export default function StudiosHero() {
                 letterSpacing: '-0.02em',
                 marginBottom: 'clamp(18px, 3vw, 28px)',
               }}>
-                <span style={{ color: 'var(--blue)', display: 'block' }}>
+                <span className="block text-white">
                   Let’s Create Content That
                 </span>
                 <span style={{
@@ -145,7 +145,7 @@ export default function StudiosHero() {
 
               <p style={{
                 fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
-                color: '#2d3748',
+                color: '#ffffff',
                 lineHeight: 1.75,
                 maxWidth: '500px',
                 marginBottom: 'clamp(24px, 4vw, 36px)',

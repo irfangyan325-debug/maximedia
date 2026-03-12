@@ -2,173 +2,405 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
-const VIDEO_TYPES = [
+const VIDEO_TABS = [
   {
     tab: 'TESTIMONIAL',
-    icon: '🗣️',
-    title: 'Testimonial Videos',
-    desc: 'Real customers, real stories. Testimonial videos are the most trusted form of social proof — and we produce them at scale with genuine talent that resonates with your audience.',
-    bullets: ['Authentic storytelling', 'Professional talent direction', 'Multi-format delivery'],
-    bg: 'linear-gradient(135deg,#dceeff,#eef6ff)',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0',
+    thumbEmoji: '🗣️',
+    thumbBg: 'linear-gradient(135deg,#0c1a4e 0%,#1a56db 60%,#4a90d9 100%)',
   },
   {
     tab: 'PRODUCT DEMO',
-    icon: '📦',
-    title: 'Product Demo Videos',
-    desc: 'Show don\'t tell. Our product demo videos showcase exactly how your product works, addressing objections and driving purchase decisions with clear, compelling visuals.',
-    bullets: ['Clear feature walkthrough', 'Objection handling', 'Platform-optimized format'],
-    bg: 'linear-gradient(135deg,#fff3d4,#fffbf0)',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0',
+    thumbEmoji: '📦',
+    thumbBg: 'linear-gradient(135deg,#1a4e2e 0%,#2d8a50 60%,#5abc7a 100%)',
   },
   {
     tab: 'HOW TO',
-    icon: '📋',
-    title: 'How-To & Tutorial Videos',
-    desc: 'Educational content that positions your brand as the authority. How-to videos build trust, generate organic reach, and keep your audience coming back for more.',
-    bullets: ['Step-by-step clarity', 'Expert positioning', 'High shareability'],
-    bg: 'linear-gradient(135deg,#d4f0e8,#f0faf5)',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0',
+    thumbEmoji: '📋',
+    thumbBg: 'linear-gradient(135deg,#4e1a0c 0%,#c45c1a 60%,#f0954a 100%)',
   },
   {
     tab: 'CREATOR VIDEOS',
-    icon: '🌟',
-    title: 'Creator-Style Videos',
-    desc: 'Native, authentic content that blends seamlessly into feeds. Our creator network produces thumb-stopping videos that feel organic — not like ads — so audiences actually watch.',
-    bullets: ['UGC-native style', 'Platform trend-matched', 'High-engagement hooks'],
-    bg: 'linear-gradient(135deg,#ffe0ec,#fff5f8)',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0',
+    thumbEmoji: '🌟',
+    thumbBg: 'linear-gradient(135deg,#2a0c4e 0%,#6a1adb 60%,#a06af0 100%)',
+  },
+]
+
+const PHOTO_CARDS = [
+  {
+    title: 'ECOMMERCE',
+    desc: 'High-quality images that accurately represent the product and highlight its features with a neutral background.',
+    img: '/images/about-hero-main.png',
+    imgPos: 'center top',
+  },
+  {
+    title: 'STUDIO',
+    desc: 'Your product brought to life through lighting, props, background, and composition.',
+    img: '/images/about-story.png',
+    imgPos: 'center',
+  },
+  {
+    title: 'LIFESTYLE',
+    desc: 'Capture the product experience through candid moments and everyday settings. Models & Set included.',
+    img: '/images/studios-phone.png',
+    imgPos: 'center top',
   },
 ]
 
 export default function StudiosVideoTypes() {
-  const [active, setActive] = useState(0)
-  const current = VIDEO_TYPES[active]
+  const [activeTab, setActiveTab] = useState(0)
+  const [playing, setPlaying]   = useState(false)
+
+  const current = VIDEO_TABS[activeTab]
+
+  const handleTabChange = (i: number) => {
+    setActiveTab(i)
+    setPlaying(false)
+  }
 
   return (
     <>
       <style>{`
-        .vt-tabs {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-          margin-bottom: clamp(24px,4vw,36px);
+        .svt-section {
+          position: relative;
+          overflow: hidden;
         }
-        .vt-tab-btn {
-          padding: clamp(9px,1.2vw,12px) clamp(14px,2vw,22px);
-          border-radius: 8px;
-          border: 2px solid rgba(26,86,219,0.2);
+        /* Blue top half */
+        .svt-blue {
+          background: #ffffff;
+          padding: clamp(56px,8vw,88px) 0 0;
+        }
+        /* White bottom half — cards overlap the seam */
+        .svt-white {
+          background: #ffffff;
+          padding: 0 0 clamp(64px,9vw,104px);
+          margin-top: clamp(100px,9vw,60px);
+        }
+
+        /* ── Tab pills ── */
+        .svt-tabs {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 8px;
+          margin-bottom: clamp(28px,4vw,44px);
+        }
+        .svt-tab {
+          padding: clamp(7px,1vw,10px) clamp(14px,2vw,22px);
+          border-radius: 100px;
+          border: 2px solid rgba(8, 27, 206, 0.5);
           background: transparent;
           cursor: pointer;
           font-family: var(--font-display);
           font-weight: 900;
-          font-size: clamp(0.68rem,1.1vw,0.78rem);
-          letter-spacing: 0.08em;
+          font-size: clamp(0.65rem,1vw,0.75rem);
+          letter-spacing: 0.1em;
           text-transform: uppercase;
-          color: var(--blue);
-          transition: all 0.18s ease;
+          color: rgba(7, 61, 210, 0.7);
+          transition: all 0.18s;
           white-space: nowrap;
         }
-        .vt-tab-btn.active {
-          background: var(--blue);
-          border-color: var(--blue);
-          color: #fff;
-          box-shadow: 0 4px 14px rgba(26,86,219,0.3);
+        .svt-tab-active {
+          background: rgba(7, 61, 210, 0.7);
+          border-color: var(--blue)
+          color: #ffffff;
         }
-        .vt-tab-btn:hover:not(.active) {
-          border-color: var(--blue);
-          background: rgba(26,86,219,0.06);
+        .svt-tab:hover:not(.svt-tab-active) {
+          background: rgba(16, 22, 222, 0.15);
+          color: #ffffff;
         }
-        .vt-content-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: clamp(24px,4vw,56px);
+
+        /* ── Phone mockup (landscape) ── */
+        .svt-phone-wrap {
+          position: relative;
+          margin: 0 auto;
+          width: 100%;
+          max-width: clamp(240px,50vw,480px);
+        }
+        .svt-btn-l1 { position:absolute; left:clamp(-10px,-1.8vw,-6px); top:22%; width:clamp(4px,0.6vw,5px); height:clamp(26px,3.5vw,38px); background:#1a1a2e; border-radius:2px 0 0 2px; z-index:2; }
+        .svt-btn-l2 { position:absolute; left:clamp(-10px,-1.8vw,-6px); top:40%; width:clamp(4px,0.6vw,5px); height:clamp(26px,3.5vw,38px); background:#1a1a2e; border-radius:2px 0 0 2px; z-index:2; }
+        .svt-btn-r  { position:absolute; right:clamp(-10px,-1.8vw,-6px); top:30%; width:clamp(4px,0.6vw,5px); height:clamp(40px,5.5vw,52px); background:#1a1a2e; border-radius:0 2px 2px 0; z-index:2; }
+        .svt-phone-outer {
+          border: clamp(8px,1.4vw,14px) solid #1a1a2e;
+          border-radius: clamp(22px,3.5vw,38px);
+          background: #1a1a2e;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 28px 72px rgba(0,0,0,0.38);
+        }
+        .svt-camera {
+          position: absolute;
+          top: clamp(6px,1vw,9px);
+          left: 50%;
+          transform: translateX(-50%);
+          width: clamp(6px,0.9vw,9px);
+          height: clamp(6px,0.9vw,9px);
+          border-radius: 50%;
+          background: #2a2a3e;
+          z-index: 3;
+        }
+        .svt-screen {
+          aspect-ratio: 16/9;
+          position: relative;
+          overflow: hidden;
+          border-radius: clamp(14px,2.5vw,26px);
+          background: #111;
+          cursor: pointer;
+        }
+        .svt-thumb {
+          position: absolute;
+          inset: 0;
+          display: flex;
           align-items: center;
+          justify-content: center;
+          transition: opacity 0.3s;
         }
-        @media (max-width: 720px) {
-          .vt-content-grid { grid-template-columns: 1fr; gap: 24px; }
+        .svt-thumb-label {
+          position: absolute;
+          bottom: clamp(10px,1.5vw,16px);
+          left: 50%;
+          transform: translateX(-50%);
+          font-family: var(--font-display);
+          font-weight: 900;
+          font-size: clamp(0.6rem,1vw,0.76rem);
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: rgba(5, 62, 176, 0.55);
+          white-space: nowrap;
+        }
+        .svt-play-overlay {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 3;
+        }
+        .svt-play-btn {
+          width: clamp(52px,8vw,80px);
+          height: clamp(52px,8vw,80px);
+          border-radius: 50%;
+          background: rgba(255,255,255,0.9);
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+          transition: transform 0.2s, background 0.2s;
+        }
+        .svt-play-btn:hover { transform: scale(1.1); background: #fff; }
+        .svt-play-triangle {
+          width: 0; height: 0;
+          border-top: clamp(10px,1.6vw,16px) solid transparent;
+          border-bottom: clamp(10px,1.6vw,16px) solid transparent;
+          border-left: clamp(16px,2.5vw,24px) solid var(--blue);
+          margin-left: clamp(3px,0.5vw,5px);
+        }
+        .svt-iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+        }
+
+        /* ── 3 photo cards — overlap blue/white seam ── */
+        .svt-cards-wrap {
+          margin-top: clamp(-60px,-9vw,-40px);
+          padding: 0 0 0;
+          position: relative;
+          z-index: 2;
+        }
+        .svt-cards-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: clamp(14px,2vw,22px);
+        }
+        .svt-card {
+          background: #ffffff;
+          border: 1.5px solid #b8dff0;
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 4px 4px 0 #c9e8f5, 0 4px 16px rgba(26,86,219,0.07);
+          transition: transform 0.22s, box-shadow 0.22s;
+        }
+        .svt-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 4px 8px 0 #b8dff0, 0 12px 32px rgba(26,86,219,0.13);
+        }
+        .svt-card-img {
+          width: 100%;
+          aspect-ratio: 4/3;
+          object-fit: cover;
+          display: block;
+        }
+        .svt-card-img-placeholder {
+          width: 100%;
+          aspect-ratio: 4/3;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: clamp(2.5rem,5vw,4rem);
+        }
+        .svt-card-body {
+          padding: clamp(16px,2.5vw,24px);
+        }
+        .svt-card-title {
+          font-family: var(--font-display);
+          font-weight: 900;
+          font-style: italic;
+          text-transform: uppercase;
+          font-size: clamp(1rem,2vw,1.25rem);
+          color: var(--blue);
+          margin-bottom: clamp(8px,1.2vw,12px);
+          letter-spacing: 0.01em;
+        }
+        .svt-card-desc {
+          font-size: clamp(0.8rem,1.2vw,0.9rem);
+          color: rgba(12,26,78,0.65);
+          line-height: 1.75;
+          margin-bottom: clamp(14px,2vw,20px);
+        }
+        .svt-card-btn {
+          display: inline-flex;
+          align-items: center;
+          padding: clamp(10px,1.4vw,13px) clamp(16px,2.2vw,24px);
+          background: var(--yellow);
+          color: #0c1a4e;
+          border-radius: 7px;
+          font-family: var(--font-display);
+          font-weight: 900;
+          font-size: clamp(0.68rem,1.1vw,0.78rem);
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          text-decoration: none;
+          border: 2px solid #0c1a4e;
+          box-shadow: 0 3px 0 #0c1a4e;
+          transition: all 0.15s;
+          white-space: nowrap;
+        }
+        .svt-card-btn:hover { transform: translateY(-1px); box-shadow: 0 5px 0 #0c1a4e; }
+
+        @media (max-width: 768px) {
+          .svt-cards-grid { grid-template-columns: 1fr; gap: 14px; max-width: 400px; margin: 0 auto; }
+          .svt-cards-wrap { margin-top: 32px; }
+          .svt-card:hover { transform: none; }
+        }
+        @media (min-width: 481px) and (max-width: 768px) {
+          .svt-cards-grid { grid-template-columns: repeat(3,1fr); max-width: 100%; }
+        }
+        @media (max-width: 480px) {
+          .svt-tabs { gap: 6px; }
+          .svt-tab { padding: 6px 12px; font-size: 0.62rem; }
         }
       `}</style>
 
-      <section style={{ background: '#f2f5fc', padding: 'clamp(64px,9vw,104px) 0' }}>
+      {/* ── Blue top half ── */}
+      <div className="svt-blue">
         <div className="container">
 
           {/* Heading */}
-          <div style={{ marginBottom: 'clamp(28px,4vw,44px)' }}>
-            <p className="font-display font-black uppercase" style={{ fontSize: '0.75rem', letterSpacing: '0.14em', color: 'var(--yellow)', marginBottom: '8px' }}>
-              VIDEO CONTENT
-            </p>
-            <h2 className="font-display font-black uppercase" style={{
-              fontSize: 'clamp(1.6rem,4vw,2.8rem)', color: 'var(--blue)',
-              lineHeight: 1.05, letterSpacing: '-0.01em',
-            }}>
-              LET&apos;S TALK{' '}
-              <span style={{ color: 'var(--yellow)', textDecoration: 'underline', textDecorationColor: 'var(--yellow)', textDecorationThickness: '4px', textUnderlineOffset: '5px' }}>VIDEO</span>
-            </h2>
-          </div>
+          <h2
+            className="font-display font-black uppercase"
+            style={{
+              fontSize: 'clamp(2rem,5.5vw,3.8rem)',
+              lineHeight: 1.0,
+              color: '#0505b0',
+              letterSpacing: '-0.02em',
+              textAlign: 'center',
+              marginBottom: 'clamp(22px,3.5vw,36px)',
+            }}
+          >
+            LET&apos;S TALK VIDEO
+          </h2>
 
-          {/* Tab buttons */}
-          <div className="vt-tabs">
-            {VIDEO_TYPES.map((v, i) => (
-              <button key={v.tab} className={`vt-tab-btn${active === i ? ' active' : ''}`} onClick={() => setActive(i)}>
+          {/* Tab pills */}
+          <div className="svt-tabs">
+            {VIDEO_TABS.map((v, i) => (
+              <button
+                key={v.tab}
+                className={`svt-tab ${activeTab === i ? 'svt-tab-active' : ''}`}
+                onClick={() => handleTabChange(i)}
+              >
                 {v.tab}
               </button>
             ))}
           </div>
 
-          {/* Content panel */}
-          <div className="vt-content-grid">
-            {/* Left: text */}
-            <div>
-              <div style={{ fontSize: 'clamp(2.4rem,4vw,3.2rem)', marginBottom: '14px' }}>{current.icon}</div>
-              <h3 className="font-display font-black uppercase" style={{
-                fontSize: 'clamp(1.2rem,2.5vw,1.7rem)', color: 'var(--blue)',
-                lineHeight: 1.05, letterSpacing: '-0.01em', marginBottom: '14px',
-              }}>
-                {current.title}
-              </h3>
-              <p style={{ fontSize: 'clamp(0.88rem,1.5vw,0.97rem)', color: 'rgba(12,26,78,0.65)', lineHeight: 1.82, marginBottom: '18px' }}>
-                {current.desc}
-              </p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                {current.bullets.map(b => (
-                  <li key={b} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <span style={{
-                      width: '20px', height: '20px', borderRadius: '50%',
-                      background: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: '0.6rem', color: '#fff', fontWeight: 900, flexShrink: 0,
-                    }}>✓</span>
-                    <span style={{ fontSize: 'clamp(0.82rem,1.3vw,0.9rem)', color: 'rgba(12,26,78,0.72)', fontWeight: 600 }}>{b}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link href="/contact" className="font-display font-black uppercase" style={{
-                display: 'inline-flex', alignItems: 'center',
-                padding: 'clamp(12px,1.8vw,15px) clamp(20px,3vw,32px)',
-                background: 'var(--yellow)', color: '#0c1a4e',
-                borderRadius: '9px', fontSize: 'clamp(0.72rem,1.2vw,0.8rem)',
-                letterSpacing: '0.1em', textDecoration: 'none',
-                boxShadow: '0 4px 14px rgba(245,197,24,0.4)',
-                border: '2px solid #0c1a4e',
-              }}>
-                GET STARTED →
-              </Link>
-            </div>
-
-            {/* Right: visual */}
-            <div style={{
-              background: current.bg,
-              borderRadius: 'clamp(16px,3vw,24px)',
-              aspectRatio: '1/1',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 'clamp(4rem,8vw,6rem)',
-              border: '1.5px solid rgba(26,86,219,0.1)',
-              boxShadow: '0 8px 32px rgba(26,86,219,0.08)',
-              transition: 'background 0.3s ease',
-            }}>
-              <span style={{ filter: 'drop-shadow(0 8px 20px rgba(0,0,0,0.12))' }}>{current.icon}</span>
+          {/* Landscape phone mockup */}
+          <div className="svt-phone-wrap">
+            <div className="svt-btn-l1" />
+            <div className="svt-btn-l2" />
+            <div className="svt-btn-r" />
+            <div className="svt-phone-outer">
+              <div className="svt-camera" />
+              <div className="svt-screen" onClick={() => !playing && setPlaying(true)}>
+                {playing ? (
+                  <iframe
+                    className="svt-iframe"
+                    src={current.videoUrl}
+                    title={current.tab}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <>
+                    <div className="svt-thumb" style={{ background: current.thumbBg }}>
+                      <span style={{ fontSize: 'clamp(3rem,6vw,5rem)', filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3))' }}>
+                        {current.thumbEmoji}
+                      </span>
+                      <span className="svt-thumb-label">MAXIMEDIA STUDIOS — {current.tab}</span>
+                    </div>
+                    <div className="svt-play-overlay">
+                      <button className="svt-play-btn" aria-label="Play video">
+                        <div className="svt-play-triangle" />
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           </div>
 
         </div>
-      </section>
+      </div>
+
+      {/* ── White bottom half ── */}
+      <div className="svt-white">
+        <div className="container">
+          <div className="svt-cards-wrap">
+            <div className="svt-cards-grid">
+              {PHOTO_CARDS.map(card => (
+                <div key={card.title} className="svt-card">
+                  {/* Image area */}
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', overflow: 'hidden' }}>
+                    <Image
+                      src={card.img}
+                      alt={card.title}
+                      fill
+                      style={{ objectFit: 'cover', objectPosition: card.imgPos }}
+                      sizes="(max-width: 768px) 90vw, 33vw"
+                    />
+                  </div>
+
+                  {/* Body */}
+                  <div className="svt-card-body">
+                    <p className="svt-card-title">{card.title}</p>
+                    <p className="svt-card-desc">{card.desc}</p>
+                    <Link href="/contact" className="svt-card-btn">GET STARTED</Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
