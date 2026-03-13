@@ -346,6 +346,7 @@ export const BLOG_POSTS = [
     emoji: '🎨',
     readTime: '8 min read',
     date: 'Feb 10, 2025',
+    author: 'MAXIMEDIA Team',
   },
   {
     slug: 'facebook-instant-experience-ads',
@@ -356,6 +357,7 @@ export const BLOG_POSTS = [
     emoji: '📘',
     readTime: '6 min read',
     date: 'Jan 28, 2025',
+    author: 'MAXIMEDIA Team',
   },
   {
     slug: 'topics-to-attract-students',
@@ -366,6 +368,7 @@ export const BLOG_POSTS = [
     emoji: '🎓',
     readTime: '5 min read',
     date: 'Jan 15, 2025',
+    author: 'MAXIMEDIA Team',
   },
   {
     slug: 'social-media-marketing-for-gyms',
@@ -376,6 +379,7 @@ export const BLOG_POSTS = [
     emoji: '💪',
     readTime: '10 min read',
     date: 'Dec 30, 2024',
+    author: 'MAXIMEDIA Team',
   },
   {
     slug: 'instagram-interactive-stories-ads',
@@ -386,6 +390,7 @@ export const BLOG_POSTS = [
     emoji: '📸',
     readTime: '7 min read',
     date: 'Dec 18, 2024',
+    author: 'MAXIMEDIA Team',
   },
 ]
 
