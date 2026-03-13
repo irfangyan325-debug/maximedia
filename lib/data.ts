@@ -46,10 +46,7 @@ export const NAV_LINKS = [
   {
     label: 'Blog',
     href: '/blog',
-    children: [
-      { label: 'Blog', href: '/blog' },
-      { label: 'Resources', href: '/blog#resources' },
-    ],
+   
   },
 ]
 

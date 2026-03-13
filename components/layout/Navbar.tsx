@@ -37,7 +37,6 @@ function MobileNavItem({
 
   return (
     <div>
-      {/* Accordion toggle */}
       <button
         onClick={() => setOpen(o => !o)}
         style={{
@@ -67,7 +66,6 @@ function MobileNavItem({
         }}>▾</span>
       </button>
 
-      {/* Children */}
       <div style={{
         overflow: 'hidden',
         maxHeight: open ? '600px' : '0',
@@ -111,27 +109,23 @@ function MobileNavItem({
   )
 }
 
-/* ── Main Navbar ─────────────────────────────────── */
 export default function Navbar() {
   const [scrolled,   setScrolled]   = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const navRef = useRef<HTMLElement>(null)
 
-  /* Scroll shadow */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  /* Close mobile menu on desktop resize */
   useEffect(() => {
     const onResize = () => { if (window.innerWidth >= 1024) setMobileOpen(false) }
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
-  /* Lock body scroll when menu open */
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
