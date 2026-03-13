@@ -85,7 +85,7 @@ export default function ProcessSection() {
         <div className="container mb-12" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '24px', flexWrap: 'wrap' }}>
           <h2
             className="font-display font-black uppercase"
-            style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', lineHeight: 1.08, color: '#fff', maxWidth: 700 }}
+            style={{ fontSize: 'clamp(1.4rem, 4vw, 2.6rem)', lineHeight: 1.6, color: '#fff', maxWidth: 700 }}
           >
             <span style={{
               color: 'var(--yellow)',
@@ -130,7 +130,6 @@ export default function ProcessSection() {
           </div>
         </div>
 
-        {/* Scrollable card track */}
         <div
           ref={trackRef}
           style={{
@@ -191,7 +190,6 @@ export default function ProcessSection() {
           ))}
         </div>
 
-        {/* Dot navigation */}
         <div className="container" style={{ marginTop: '28px', display: 'flex', alignItems: 'center' }}>
           <div style={{ flex: 1, height: '1.5px', background: 'rgba(255,255,255,0.2)', borderRadius: '2px' }} />
           {PROCESS_STEPS.map((step, i) => (
