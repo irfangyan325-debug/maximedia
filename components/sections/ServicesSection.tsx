@@ -12,15 +12,6 @@ const SERVICE_ICONS: Record<string, string> = {
   'selling':    '🔗',
 }
 
-const CARD_BG: Record<string, string> = {
-  'strategy':   'rgba(255, 255, 255, 0.25)',
-  'content':    'rgba(255, 255, 255, 0.25)',
-  'management': 'rgba(255, 255, 255, 0.25)',
-  'paid':       'rgba(255, 255, 255, 0.2)',
-  'influencer': 'rgba(255, 255, 255, 0.2)',
-  'selling':    'rgba(255, 255, 255, 0.2)',
-}
-
 export default function ServicesSection() {
   const displayServices = SERVICES.slice(0, 6)
 
@@ -33,23 +24,67 @@ export default function ServicesSection() {
           gap: 20px;
           margin-bottom: 32px;
         }
-        /* Tablet */
-        @media (max-width: 900px) {
-          .services-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-          }
-        }
-        /* Mobile */
+        @media (max-width: 900px) { .services-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
         @media (max-width: 520px) {
-          .services-grid {
-            grid-template-columns: 1fr;
-            gap: 14px;
-          }
-          .services-cta-btn {
-            width: 100%;
-            justify-content: center;
-          }
+          .services-grid { grid-template-columns: 1fr; gap: 14px; }
+          .services-cta-btn { width: 100%; justify-content: center; }
+        }
+
+        /* Card — matching screenshot */
+        .svc-card {
+          display: block;
+          text-decoration: none;
+          background: #ffffff;
+          border: 2px solid #b8dff0;
+          border-radius: 20px;
+          padding: clamp(20px,3vw,28px) clamp(18px,2.5vw,26px) clamp(22px,3.5vw,32px);
+          position: relative;
+          overflow: hidden;
+          /* Offset shadow — matches screenshot */
+          box-shadow: 6px 6px 0px #b8dff0, 0 4px 16px rgba(26,86,219,0.06);
+          transition: transform 0.22s ease, box-shadow 0.22s ease;
+        }
+        .svc-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 6px 12px 0px #a0cce8, 0 12px 32px rgba(26,86,219,0.12);
+        }
+
+        /* Blue tab notch on right edge */
+        .svc-card::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          right: -2px;
+          transform: translateY(-50%);
+          width: 6px;
+          height: clamp(44px,7vw,72px);
+          background: var(--blue);
+          border-radius: 4px 0 0 4px;
+        }
+
+        .svc-title {
+          font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+          line-height: 1.25;
+          color: var(--blue);
+          margin-bottom: clamp(12px,2vw,18px);
+          letter-spacing: 0.01em;
+        }
+
+        .svc-bullet {
+          display: flex;
+          align-items: flex-start;
+          gap: 9px;
+          font-size: clamp(0.8rem, 1.2vw, 0.88rem);
+          color: rgba(12,26,78,0.68);
+          line-height: 1.55;
+        }
+        .svc-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: var(--blue);
+          flex-shrink: 0;
+          margin-top: 5px;
         }
       `}</style>
 
@@ -59,13 +94,13 @@ export default function ServicesSection() {
           {/* Heading */}
           <div style={{ textAlign: 'center', marginBottom: 'clamp(32px,5vw,52px)' }}>
             <h2 className="font-display font-black uppercase" style={{
-              fontSize: 'clamp(2.8rem,4vw,2.6rem)', lineHeight: 1.1,
+              fontSize: 'clamp(1.6rem,4vw,2.6rem)', lineHeight: 1.1,
               color: 'var(--blue)', marginBottom: '6px', letterSpacing: '-0.01em',
             }}>
               OUR COMPREHENSIVE SOCIAL MEDIA MARKETING
             </h2>
             <h2 className="font-display font-black uppercase" style={{
-              fontSize: 'clamp(2.8rem,4vw,2.6rem)', lineHeight: 1.1,
+              fontSize: 'clamp(1.6rem,4vw,2.6rem)', lineHeight: 1.1,
               color: 'var(--yellow)',
               textDecoration: 'underline', textDecorationColor: 'var(--yellow)',
               textDecorationThickness: '5px', textUnderlineOffset: '7px',
@@ -78,72 +113,38 @@ export default function ServicesSection() {
           {/* Grid */}
           <div className="services-grid">
             {displayServices.map((s) => (
-              <Link
-                key={s.id}
-                href={s.href}
-                style={{
-                  display: 'block', textDecoration: 'none',
-                  background: CARD_BG[s.id] ?? 'rgba(200,220,255,0.2)',
-                  border: '2px solid rgba(26,86,219,0.14)',
-                  borderRadius: '16px',
-                  padding: 'clamp(18px,3vw,24px) clamp(16px,2.5vw,22px) clamp(20px,3.5vw,28px)',
-                  transition: 'all 0.25s ease',
-                  position: 'relative', overflow: 'hidden',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = 'rgba(26,86,219,0.35)'
-                  e.currentTarget.style.transform   = 'translateY(-4px)'
-                  e.currentTarget.style.boxShadow   = '0 16px 40px rgba(26,86,219,0.1)'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = 'rgba(26,86,219,0.14)'
-                  e.currentTarget.style.transform   = 'translateY(0)'
-                  e.currentTarget.style.boxShadow   = 'none'
-                }}
-              >
-                {/* Icon */}
+              <Link key={s.id} href={s.href} className="svc-card">
+
+                {/* Emoji icon — top-left */}
                 <div style={{
-                  fontSize: 'clamp(8.0rem,4vw,3.8rem)', marginBottom: '14px', textAlign: 'center',
-                  
-                  filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.15))', lineHeight: 1,
+                  fontSize: 'clamp(3rem,6vw,4.5rem)',
+                  marginBottom: 'clamp(14px,2.5vw,22px)',
+                  filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.15))',
+                  lineHeight: 1,
                 }}>
                   {SERVICE_ICONS[s.id] ?? s.icon}
                 </div>
 
                 {/* Title */}
-                <h3 className="font-display font-black uppercase" style={{
-                  fontSize: 'clamp(1.3rem,1.4vw,1.4rem)', lineHeight: 1.25,
-                  color: 'var(--blue)', marginBottom: '12px', letterSpacing: '0.01em',
-                }}>
-                  {s.title}
-                </h3>
+                <h3 className="font-display font-black uppercase svc-title">{s.title}</h3>
 
                 {/* Bullets */}
-                <ul style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {s.points.map(p => (
-                    <li key={p} style={{
-                      display: 'flex', alignItems: 'flex-start', gap: '8px',
-                      fontSize: 'clamp(1.2rem,1.4vw,1.5rem)',
-                      color: 'rgba(12,26,78,0.65)', lineHeight: 1.5,
-                    }}>
-                      <span style={{
-                        width: '5px', height: '5px', borderRadius: '50%',
-                        background: 'var(--blue)', flexShrink: 0, marginTop: '6px',
-                      }} />
+                    <li key={p} className="svc-bullet">
+                      <span className="svc-dot" />
                       {p}
                     </li>
                   ))}
                 </ul>
+
               </Link>
             ))}
           </div>
 
           {/* Footer */}
           <div style={{ textAlign: 'center' }}>
-            <p style={{
-              fontSize: '0.88rem', color: 'rgba(12,26,78,0.4)',
-              fontStyle: 'italic', marginBottom: '20px', letterSpacing: '0.02em',
-            }}>
+            <p style={{ fontSize: '0.88rem', color: 'rgba(12,26,78,0.4)', fontStyle: 'italic', marginBottom: '20px', letterSpacing: '0.02em' }}>
               And more...
             </p>
             <Link
@@ -155,21 +156,12 @@ export default function ServicesSection() {
                 background: 'var(--yellow)', color: '#0c1a4e',
                 borderRadius: '10px', fontSize: 'clamp(0.78rem,1.5vw,0.88rem)',
                 letterSpacing: '0.1em', textDecoration: 'none',
-                boxShadow: '0 6px 20px rgba(245,197,24,0.4)',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = 'var(--yellow-dark)'
-                e.currentTarget.style.transform  = 'translateY(-2px)'
-                e.currentTarget.style.boxShadow  = '0 12px 30px rgba(245,197,24,0.4)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'var(--yellow)'
-                e.currentTarget.style.transform  = 'translateY(0)'
-                e.currentTarget.style.boxShadow  = '0 6px 20px rgba(245,197,24,0.4)'
+                border: '2px solid #0c1a4e',
+                boxShadow: '0 5px 0 #0c1a4e',
+                transition: 'all 0.15s ease',
               }}
             >
-              SEE ALL SERVICES
+              SEE ALL SERVICES →
             </Link>
           </div>
 

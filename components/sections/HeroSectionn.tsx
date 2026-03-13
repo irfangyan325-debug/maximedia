@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { CLIENT_LOGOS } from '@/lib/data'
 
 export default function HeroSection() {
@@ -14,7 +15,6 @@ export default function HeroSection() {
           position: 'relative',
         }}
       >
-        {/* Faint dot grid */}
         <div className="absolute inset-0 pointer-events-none grid-texture" style={{ opacity: 0.5 }} />
 
         <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%' }}>
@@ -26,13 +26,13 @@ export default function HeroSection() {
             padding: 'clamp(40px, 8vw, 100px) 0',
           }}>
 
-            {/* ── LEFT: Copy ──────────────────────────────── */}
+            {/* ── Left: copy ── */}
             <div style={{ order: 1 }}>
               <h1
                 className="font-display font-black uppercase"
                 style={{
-                  fontSize: 'clamp(1.9rem, 5vw, 3.5rem)',
-                  lineHeight: 1.08,
+                  fontSize: 'clamp(1.6rem, 5vw, 3.1rem)',
+                  lineHeight: 1.3,
                   letterSpacing: '-0.01em',
                   marginBottom: '0',
                 }}
@@ -80,8 +80,9 @@ export default function HeroSection() {
                   fontSize: 'clamp(0.72rem, 1.5vw, 0.82rem)',
                   letterSpacing: '0.1em',
                   textDecoration: 'none',
-                  boxShadow: '0 6px 24px rgba(245,197,24,0.4)',
-                  transition: 'all 0.2s ease',
+                  border: '2px solid #0c1a4e',
+                  boxShadow: '0 5px 0 #0c1a4e',
+                  transition: 'all 0.15s ease',
                   whiteSpace: 'nowrap',
                 }}
               >
@@ -89,8 +90,6 @@ export default function HeroSection() {
               </Link>
             </div>
 
-            {/* ── RIGHT: Phone + blue blob ─────────────────── */}
-            {/* Hidden on very small screens, shown from sm up */}
             <div
               className="hero-phone-col"
               style={{
@@ -102,7 +101,7 @@ export default function HeroSection() {
                 order: 2,
               }}
             >
-              {/* Blue blob */}
+
               <div style={{
                 position: 'absolute',
                 top: '50%',
@@ -115,7 +114,6 @@ export default function HeroSection() {
                 zIndex: 0,
               }} />
 
-              {/* Phone frame */}
               <div style={{
                 position: 'relative',
                 zIndex: 1,
@@ -126,13 +124,13 @@ export default function HeroSection() {
                   width: '100%',
                   height: '100%',
                   borderRadius: 'clamp(24px, 4vw, 36px)',
-                  border: '3px solid #0c1a4e',
-                  background: '#fff',
+                  border: '8px solid #ffffff',
+                  background: '#000',
                   overflow: 'hidden',
                   boxShadow: '4px 8px 32px rgba(12,26,78,0.18)',
                   position: 'relative',
                 }}>
-                  {/* Notch */}
+
                   <div style={{
                     position: 'absolute',
                     top: '10px',
@@ -145,61 +143,17 @@ export default function HeroSection() {
                     zIndex: 10,
                   }} />
 
-                  {/* Screen */}
-                  <div style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: 'linear-gradient(170deg, #1a56db 0%, #a8d4f0 40%, #f5e6c0 70%, #e8c87a 100%)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    paddingTop: '36px',
-                    overflow: 'hidden',
-                  }}>
-                    {/* Post image */}
-                    <div style={{
-                      width: '86%',
-                      height: '58%',
-                      borderRadius: '14px',
-                      background: 'linear-gradient(145deg, #87ceeb 0%, #4a90d9 40%, #f5c518 70%, #e8a020 100%)',
-                      boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                      marginBottom: '12px',
-                    }}>
-                      🏖️
-                    </div>
-
-                    {/* Engagement bar */}
-                    <div style={{
-                      width: '86%',
-                      background: 'rgba(255,255,255,0.9)',
-                      borderRadius: '10px',
-                      padding: '8px 12px',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                    }}>
-                      <div style={{ display: 'flex', gap: '8px' }}>
-                        {['❤️', '💬', '↗️'].map((ic) => (
-                          <span key={ic} style={{ fontSize: '0.85rem' }}>{ic}</span>
-                        ))}
-                      </div>
-                      <span style={{ fontSize: '0.58rem', fontWeight: 800, color: 'var(--blue)' }}>
-                        100K+ views
-                      </span>
-                    </div>
-
-                    <div style={{ marginTop: '8px', fontSize: '0.58rem', fontWeight: 700, color: '#0c1a4e', opacity: 0.7 }}>
-                      @maximedia
-                    </div>
-                  </div>
+                
+                  <Image
+                    src="/images/hero-phone-screen.png"
+                    alt="Social media content preview"
+                    fill
+                    style={{ objectFit: 'cover', objectPosition: 'center top', }}
+                    sizes="(max-width: 768px) 30vw, 22vw"
+                    priority
+                  />
                 </div>
 
-                {/* Shadow under phone */}
                 <div style={{
                   position: 'absolute',
                   bottom: '-16px',
@@ -217,7 +171,6 @@ export default function HeroSection() {
         </div>
       </section>
 
-      {/* ── Client Logos Marquee ── */}
       <div style={{
         background: '#ffffff',
         borderTop: '1px solid rgba(26,86,219,0.08)',
@@ -250,18 +203,12 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* ── Responsive styles ── */}
       <style>{`
-        /* Mobile: stack vertically, hide phone on very small screens */
         @media (max-width: 480px) {
           .hero-phone-col { display: none !important; }
         }
-
-        /* Tablet: show phone but smaller */
         @media (max-width: 768px) {
-          .hero-phone-col {
-            min-height: 280px !important;
-          }
+          .hero-phone-col { min-height: 280px !important; }
         }
       `}</style>
     </>

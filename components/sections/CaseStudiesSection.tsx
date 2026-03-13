@@ -2,18 +2,18 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { CASE_STUDIES } from '@/lib/data'
 
-// Vivid image-like gradient backgrounds per client (light/photo feel)
-const CARD_VISUALS: Record<string, { bg: string; textOnBg: string }> = {
-  'Angi':          { bg: 'linear-gradient(145deg, #e8f4f8, #b3d4e8)', textOnBg: '#1a3f6e' },
-  'Angostura':     { bg: 'linear-gradient(145deg, #fef9ec, #f5e6c0)', textOnBg: '#7a4a10' },
-  'Bear Paw':      { bg: 'linear-gradient(145deg, #f0ebe3, #d6c9b5)', textOnBg: '#5a3a1a' },
-  'Carnival':      { bg: 'linear-gradient(145deg, #daeeff, #a8d4f5)', textOnBg: '#0d2a5e' },
-  'Mellow':        { bg: 'linear-gradient(145deg, #fdf3e8, #f5d9b0)', textOnBg: '#7a4a10' },
-  'Cell Coverage': { bg: 'linear-gradient(145deg, #eef2fc, #c8d5f0)', textOnBg: '#1a3070' },
-  'Conexpo':       { bg: 'linear-gradient(145deg, #e8f0e8, #c0d4b8)', textOnBg: '#1a3a1a' },
-  'First Trade':   { bg: 'linear-gradient(145deg, #fdeced, #f5c0c4)', textOnBg: '#6a1a20' },
+const CARD_IMAGES: Record<string, string> = {
+  'Angi':          '/images/case-studies/angi.jpg',
+  'Angostura':     '/images/case-studies/angostura.jpg',
+  'Bear Paw':      '/images/case-studies/bear-paw.jpg',
+  'Carnival':      '/images/case-studies/carnival.jpg',
+  'Mellow':        '/images/case-studies/mellow.jpg',
+  'Cell Coverage': '/images/case-studies/cell-coverage.jpg',
+  'Conexpo':       '/images/case-studies/conexpo.jpg',
+  'First Trade':   '/images/case-studies/first-trade.jpg',
 }
 
 export default function CaseStudiesSection() {
@@ -56,15 +56,14 @@ export default function CaseStudiesSection() {
   }, [onScroll])
 
   return (
-    <section style={{ background: '#c9e8f5', overflow: 'hidden', paddingBottom: '80px' }}>
+    <section style={{ background: '#e4f5fa', overflow: 'hidden', paddingBottom: '80px' }}>
 
-      {/* ── Header ──────────────────────────────────────── */}
       <div className="container" style={{ paddingTop: '80px', paddingBottom: '40px' }}>
-        <div style={{ maxWidth: '780px' }}>
+        <div style={{ maxWidth: '980px' }}>
           <h2
             className="font-display font-black uppercase"
             style={{
-              fontSize: 'clamp(1.8rem, 4vw, 3rem)',
+              fontSize: 'clamp(1.4rem, 4vw, 2.4rem)',
               lineHeight: 1.1,
               color: 'var(--blue)',
               marginBottom: '28px',
@@ -75,7 +74,6 @@ export default function CaseStudiesSection() {
             BRANDS LIKE YOURS
           </h2>
 
-          {/* Outline "EXPLORE MORE CASE STUDIES" button */}
           <Link
             href="/work"
             className="font-display font-black uppercase"
@@ -92,21 +90,15 @@ export default function CaseStudiesSection() {
               textDecoration: 'none',
               transition: 'all 0.2s',
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'var(--blue)'
-              e.currentTarget.style.color = '#fff'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent'
-              e.currentTarget.style.color = 'var(--blue)'
-            }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'var(--blue)'; e.currentTarget.style.color = '#fff' }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--blue)' }}
           >
             EXPLORE MORE CASE STUDIES
           </Link>
         </div>
       </div>
 
-      {/* ── Slider track ────────────────────────────────── */}
+      {/* ── Slider ── */}
       <div style={{ position: 'relative' }}>
         <div
           ref={trackRef}
@@ -126,85 +118,76 @@ export default function CaseStudiesSection() {
         >
           {CASE_STUDIES.map((cs, i) => {
             const isActive = i === active
-            const vis = CARD_VISUALS[cs.client] ?? { bg: 'linear-gradient(145deg,#daeeff,#a8d4f5)', textOnBg: '#0d2a5e' }
+            const imgSrc = CARD_IMAGES[cs.client] ?? '/images/case-studies/default.jpg'
 
             return (
               <div
                 key={cs.slug}
                 onClick={() => !isActive && scrollToIdx(i)}
                 style={{
-                  flex:         `0 0 ${CARD_W}px`,
-                  width:        `${CARD_W}px`,
+                  flex:            `0 0 ${CARD_W}px`,
+                  width:           `${CARD_W}px`,
                   scrollSnapAlign: 'center',
-                  cursor:       isActive ? 'default' : 'pointer',
-                  transition:   'transform 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease',
-                  transform:    isActive ? 'scale(1) translateY(0)' : 'scale(0.93) translateY(8px)',
-                  opacity:      isActive ? 1 : 0.72,
-                  borderRadius: '16px',
-                  overflow:     'hidden',
-                  background:   '#fff',
-                  border:       isActive ? '2px solid rgba(26,86,219,0.35)' : '2px solid transparent',
-                  boxShadow:    isActive
-                    ? '0 16px 50px rgba(26,86,219,0.18)'
-                    : '0 4px 16px rgba(0,0,0,0.08)',
+                  cursor:          isActive ? 'default' : 'pointer',
+                  transition:      'transform 0.35s ease, opacity 0.35s ease, box-shadow 0.35s ease',
+                  transform:       isActive ? 'scale(1) translateY(0)' : 'scale(0.93) translateY(8px)',
+                  opacity:         isActive ? 1 : 0.82,
+                  borderRadius:    '16px',
+                  overflow:        'hidden',
+                  background:      '#fff',
+                  // Active: white border + strong shadow; inactive: subtle shadow
+                  border:          isActive ? '2.5px solid #ffffff' : '2px solid rgba(255,255,255,0.35)',
+                  boxShadow:       isActive
+                    ? '0 20px 56px rgba(26,86,219,0.22), 0 2px 8px rgba(0,0,0,0.12)'
+                    : '0 4px 16px rgba(0,0,0,0.1)',
                 }}
               >
-                {/* Image area */}
                 <div style={{
-                  height: '280px',
-                  background: vis.bg,
                   position: 'relative',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  width: '100%',
+                  height: '360px',
                   overflow: 'hidden',
                 }}>
-                  {/* Big emoji as content */}
-                  <span style={{
-                    fontSize: '5.5rem',
-                    filter: 'drop-shadow(0 8px 20px rgba(0,0,0,0.15))',
-                  }}>
-                    {cs.emoji}
-                  </span>
+                  <Image
+                    src={imgSrc}
+                    alt={cs.client}
+                    fill
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                      transition: 'transform 0.4s ease',
+                      transform: isActive ? 'scale(1)' : 'scale(1.05)',
+                    }}
+                    sizes="300px"
+                  />
 
-                  {/* Client tag badge top-left */}
                   <div style={{
                     position: 'absolute',
-                    top: '10px', left: '10px',
-                    background: 'rgba(255,255,255,0.85)',
-                    backdropFilter: 'blur(8px)',
-                    borderRadius: '6px',
-                    padding: '4px 10px',
-                    fontSize: '0.65rem',
-                    fontWeight: 800,
-                    color: vis.textOnBg,
-                    letterSpacing: '0.06em',
-                    textTransform: 'uppercase' as const,
-                    border: '1px solid rgba(255,255,255,0.6)',
-                  }}>
-                    {cs.client}
-                  </div>
+                    inset: 0,
+                    background: 'linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.12) 100%)',
+                    pointerEvents: 'none',
+                  }} />
 
-                  {/* Tags bottom */}
+                  {/* Tags bottom of image */}
                   <div style={{
                     position: 'absolute',
                     bottom: '10px',
                     left: '10px',
                     display: 'flex',
                     gap: '6px',
-                    flexWrap: 'wrap' as const,
+                    flexWrap: 'wrap',
                   }}>
-                    {cs.tags.slice(0, 2).map((tag) => (
+                    {cs.tags.slice(0, 2).map(tag => (
                       <span key={tag} style={{
-                        background: 'rgba(255,255,255,0.75)',
-                        backdropFilter: 'blur(4px)',
+                        background: 'rgba(255,255,255,0.82)',
+                        backdropFilter: 'blur(6px)',
                         borderRadius: '100px',
                         padding: '3px 10px',
                         fontSize: '0.6rem',
                         fontWeight: 700,
-                        color: vis.textOnBg,
+                        color: '#0c1a4e',
                         letterSpacing: '0.04em',
-                        border: '1px solid rgba(255,255,255,0.5)',
+                        border: '1px solid rgba(255,255,255,0.6)',
                       }}>
                         {tag}
                       </span>
@@ -212,10 +195,10 @@ export default function CaseStudiesSection() {
                   </div>
                 </div>
 
-                {/* Text area — only visible on active card */}
                 <div style={{
-                  padding: '18px 18px 20px',
-                  opacity: isActive ? 1 : 0,
+                  padding: '18px 20px 22px',
+                  background: '#ffffff',
+                  opacity:   isActive ? 1 : 0,
                   transform: isActive ? 'translateY(0)' : 'translateY(6px)',
                   transition: 'opacity 0.3s ease, transform 0.3s ease',
                   minHeight: '90px',
@@ -244,7 +227,6 @@ export default function CaseStudiesSection() {
           })}
         </div>
 
-        {/* ← Prev arrow */}
         <button
           onClick={() => scrollToIdx(active - 1)}
           disabled={!canPrev}
@@ -254,19 +236,14 @@ export default function CaseStudiesSection() {
             bottom: '44px',
             left: '50%',
             transform: 'translateX(calc(-50% - 60px))',
-            width: '52px',
-            height: '52px',
+            width: '52px', height: '52px',
             borderRadius: '12px',
             background: canPrev ? 'var(--yellow)' : 'rgba(255,255,255,0.5)',
-            border: 'none',
+            border: canPrev ? '2px solid #0c1a4e' : '2px solid transparent',
+            boxShadow: canPrev ? '0 4px 0 #0c1a4e' : 'none',
             cursor: canPrev ? 'pointer' : 'default',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: 900,
-            fontSize: '1.1rem',
-            color: '#0c1a4e',
-            boxShadow: canPrev ? '0 4px 16px rgba(245,197,24,0.4)' : 'none',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontWeight: 900, fontSize: '1.1rem', color: '#0c1a4e',
             transition: 'all 0.2s',
             zIndex: 10,
           }}
@@ -274,7 +251,6 @@ export default function CaseStudiesSection() {
           ←
         </button>
 
-        {/* → Next arrow */}
         <button
           onClick={() => scrollToIdx(active + 1)}
           disabled={!canNext}
@@ -284,26 +260,20 @@ export default function CaseStudiesSection() {
             bottom: '44px',
             left: '50%',
             transform: 'translateX(calc(-50% + 60px))',
-            width: '52px',
-            height: '52px',
+            width: '52px', height: '52px',
             borderRadius: '12px',
             background: canNext ? 'var(--yellow)' : 'rgba(255,255,255,0.5)',
-            border: 'none',
+            border: canNext ? '2px solid #0c1a4e' : '2px solid transparent',
+            boxShadow: canNext ? '0 4px 0 #0c1a4e' : 'none',
             cursor: canNext ? 'pointer' : 'default',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: 900,
-            fontSize: '1.1rem',
-            color: '#0c1a4e',
-            boxShadow: canNext ? '0 4px 16px rgba(245,197,24,0.4)' : 'none',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontWeight: 900, fontSize: '1.1rem', color: '#0c1a4e',
             transition: 'all 0.2s',
             zIndex: 10,
           }}
         >
           →
         </button>
-
       </div>
 
     </section>

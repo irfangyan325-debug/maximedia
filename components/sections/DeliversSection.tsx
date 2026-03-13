@@ -1,22 +1,23 @@
 'use client'
 
 import { useRef, useState, useEffect, useCallback } from 'react'
+import Image from 'next/image'
 
 const PORTFOLIO_CARDS = [
-  { bg: 'white', emoji: '⚾', label: "Dick's Sporting Goods", accent: '#ff6b35' },
-  { bg: 'white', emoji: '🍔', label: "Beef O'Brady's",         accent: '#f5c518' },
-  { bg: 'white', emoji: '🐯', label: "Dick's Sporting Goods",  accent: '#c0392b' },
-  { bg: 'white', emoji: '💪', label: 'A3C Festival',            accent: '#f5c518' },
-  { bg: 'white', emoji: '📱', label: 'Samsung',                 accent: '#f5c518' },
-  { bg: 'white', emoji: '🏠', label: 'Angi',                    accent: '#fff'    },
-  { bg: 'white', emoji: '🎵', label: 'Carnival',                 accent: '#f5c518' },
-  { bg: 'white', emoji: '🎯', label: 'SHOKZ',                    accent: '#fff'    },
+  { image: '/images/portfolio/dicks-sporting-1.jpg',  label: "Dick's Sporting Goods", accent: '#ff6b35' },
+  { image: '/images/portfolio/beef-obradys.jpg',       label: "Beef O'Brady's",         accent: '#f5c518' },
+  { image: '/images/portfolio/dicks-sporting-2.jpg',   label: "Dick's Sporting Goods",  accent: '#c0392b' },
+  { image: '/images/portfolio/a3c-festival.jpg',       label: 'A3C Festival',            accent: '#f5c518' },
+  { image: '/images/portfolio/samsung.jpg',            label: 'Samsung',                 accent: '#f5c518' },
+  { image: '/images/portfolio/angi.jpg',               label: 'Angi',                    accent: '#fff'    },
+  { image: '/images/portfolio/carnival.jpg',           label: 'Carnival',                accent: '#f5c518' },
+  { image: '/images/portfolio/shokz.jpg',              label: 'SHOKZ',                   accent: '#fff'    },
 ]
 
 const PILL_POINTS = [
-  { bold: 'DATA-DRIVEN STRATEGIES', rest: 'TAILORED TO YOUR GOALS'             },
-  { bold: 'EXPERT EXECUTION',       rest: 'ACROSS ALL MAJOR PLATFORMS'         },
-  { bold: 'TRANSPARENT REPORTING',  rest: 'FOCUSED ON KEY BUSINESS METRICS'    },
+  { bold: 'DATA-DRIVEN STRATEGIES', rest: 'TAILORED TO YOUR GOALS'          },
+  { bold: 'EXPERT EXECUTION',       rest: 'ACROSS ALL MAJOR PLATFORMS'      },
+  { bold: 'TRANSPARENT REPORTING',  rest: 'FOCUSED ON KEY BUSINESS METRICS' },
 ]
 
 export default function DeliversSection() {
@@ -50,7 +51,7 @@ export default function DeliversSection() {
   return (
     <section style={{ background: 'var(--blue)', paddingBottom: 0, overflow: 'hidden' }}>
 
-      {/* ── Heading + pill points ───────────────────────── */}
+      {/* ── Heading + pill points ── */}
       <div style={{ textAlign: 'center', padding: '60px 28px 32px' }}>
         <h2
           className="font-display font-black uppercase"
@@ -58,22 +59,14 @@ export default function DeliversSection() {
             fontSize: 'clamp(1.8rem, 4vw, 2.9rem)',
             lineHeight: 1.1,
             color: '#ffffff',
-            marginBottom: '28px',
-            letterSpacing: '-0.01em',
             margin: '0 auto 28px',
+            letterSpacing: '-0.01em',
           }}
         >
           MAXIMEDIA DELIVERS STRATEGIC SOCIAL<br />MARKETING THAT CONVERTS
         </h2>
 
-        {/* Three yellow-bold pill points */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: '40px',
-          flexWrap: 'wrap',
-          marginBottom: '44px',
-        }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', flexWrap: 'wrap', marginBottom: '44px' }}>
           {PILL_POINTS.map((pt) => (
             <div key={pt.bold} style={{ textAlign: 'center', maxWidth: '320px' }}>
               <span style={{ fontWeight: 900, color: 'var(--yellow)', fontSize: '1.0rem', letterSpacing: '0.04em' }}>
@@ -87,7 +80,6 @@ export default function DeliversSection() {
         </div>
       </div>
 
-      {/* ── Full-width portfolio slider ─────────────────── */}
       <div>
         <div
           ref={trackRef}
@@ -117,31 +109,37 @@ export default function DeliversSection() {
                   cursor:         isActive ? 'default' : 'pointer',
                   borderRadius:   '20px 20px 0 0',
                   overflow:       'hidden',
-                  background:     card.bg,
+                  background:     '#111',
                   borderTop:      isActive ? '2px solid rgba(255,255,255,0.5)' : '2px solid rgba(255,255,255,0.12)',
                   borderLeft:     isActive ? '2px solid rgba(255,255,255,0.5)' : '2px solid rgba(255,255,255,0.12)',
                   borderRight:    isActive ? '2px solid rgba(255,255,255,0.5)' : '2px solid rgba(255,255,255,0.12)',
                   borderBottom:   'none',
                   transition:     'all 0.4s ease',
                   transform:      isActive ? 'translateY(0)' : 'translateY(20px)',
-                  opacity:        isActive ? 1 : 0.72,
                   position:       'relative',
-                  display:        'flex',
-                  alignItems:     'center',
-                  justifyContent: 'center',
                   boxShadow:      isActive ? '0 -12px 40px rgba(0,0,0,0.25)' : 'none',
                   flexShrink:     0,
                 }}
               >
-                {/* Big emoji */}
-                <span style={{
-                  fontSize:   isActive ? '20rem' : '15rem',
-                  filter:     'drop-shadow(0 8px 20px rgba(0,0,0,0.3))',
-                  transition: 'font-size 0.4s ease',
-                  lineHeight: 1,
-                }}>
-                  {card.emoji}
-                </span>
+                <Image
+                  src={card.image}
+                  alt={card.label}
+                  fill
+                  style={{
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                    transition: 'transform 0.4s ease',
+                    transform: isActive ? 'scale(1)' : 'scale(1.04)',
+                  }}
+                  sizes="420px"
+                />
+
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)',
+                  pointerEvents: 'none',
+                }} />
 
                 {/* Brand label */}
                 <div style={{
@@ -156,7 +154,7 @@ export default function DeliversSection() {
                   fontWeight: 800,
                   color:      card.accent,
                   letterSpacing: '0.06em',
-                  textTransform: 'uppercase' as const,
+                  textTransform: 'uppercase',
                   border:     '1px solid rgba(255,255,255,0.15)',
                 }}>
                   {card.label}
