@@ -43,11 +43,11 @@ export const NAV_LINKS = [
   },
   { label: 'Studios', href: '/studios' },
   { label: 'Work', href: '/work' },
-  {
-    label: 'Blog',
-    href: '/blog',
+  // {
+  //   label: 'Blog',
+  //   href: '/blog',
    
-  },
+  // },
 ]
 
 export const STATS = [
