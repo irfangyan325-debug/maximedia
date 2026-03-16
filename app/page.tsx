@@ -23,15 +23,15 @@ export default function HomePage() {
     <>
       <HeroSection />
       <PainPointsSection />
-      <DeliversSection />
+      {/* <DeliversSection /> */}
       <ServicesSection />
-      <CaseStudiesSection />
+      {/* <CaseStudiesSection /> */}
       <AreYouInBanner />
       <WhyChooseSection />
       <TestimonialsSection />
       <ProcessSection />
       <PricingSection />
-      <BrandsSection />
+      {/* <BrandsSection /> */}
       <ContactSection />
       <BlogPreviewSection />
       <CtaSection />
