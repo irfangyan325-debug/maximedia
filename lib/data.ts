@@ -29,7 +29,7 @@ export const NAV_LINKS = [
     label: 'Services',
     href: '/services',
     children: [
-      { label: 'Social Media Strategy', href: '/services#strategy' },
+      { label: 'Social Media Strategy', href: '/services/social-media-strategy' },
       { label: 'Social Media Management', href: '/services#management' },
       { label: 'Community Management', href: '/services#community' },
       { label: 'Social Content Production', href: '/services#content' },
