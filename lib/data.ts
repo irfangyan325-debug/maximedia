@@ -31,7 +31,7 @@ export const NAV_LINKS = [
     children: [
       { label: 'Social Media Strategy', href: '/services/social-media-strategy' },
       { label: 'Social Media Management', href: '/services/social-media-management' },
-      { label: 'Community Management', href: '/services#community' },
+      { label: 'Community Management', href: '/services/community-management-and-listening' },
       { label: 'Social Content Production', href: '/services#content' },
       { label: 'Paid Social Advertising', href: '/services#paid' },
       { label: 'Influencer Marketing', href: '/services#influencer' },
