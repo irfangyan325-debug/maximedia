@@ -33,7 +33,7 @@ export const NAV_LINKS = [
       { label: 'Social Media Management', href: '/services/social-media-management' },
       { label: 'Community Management', href: '/services/community-management-and-listening' },
       { label: 'Social Content Production', href: '/services#content' },
-      { label: 'Paid Social Advertising', href: '/services#paid' },
+      { label: 'Paid Social Advertising', href: '/services/paid-social-advertising' },
       { label: 'Influencer Marketing', href: '/services#influencer' },
       { label: 'Social Media Consulting', href: '/services#consulting' },
     ],

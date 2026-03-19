@@ -17,9 +17,7 @@ export default function CommunityHowItWorks() {
       <section style={{background:'#f2f5fc',padding:'clamp(72px,9vw,100px) 0'}}>
         <div className="container">
           <div className="chw-grid">
-            {/* Left: text */}
             <div>
-              <p className="font-display font-black uppercase" style={{fontSize:'0.75rem',letterSpacing:'0.14em',color:'var(--yellow)',marginBottom:'10px'}}>THE PROCESS</p>
               <h2 className="font-display font-black uppercase chw-heading">HOW IT WORKS</h2>
               <p className="chw-body">
                 We kick things off by developing a social media strategy that includes specific guidelines for engagement for our community managers to follow.
@@ -36,14 +34,12 @@ export default function CommunityHowItWorks() {
                 Each month, we take a look back at our performance, including engagement and follower growth. By looking at this data, we can evaluate each step and identify which tactics have been effective.
               </p>
 
-              {/* Build Brand Loyalty badge */}
               <div style={{display:'inline-flex',alignItems:'center',gap:'10px',padding:'12px 20px',background:'#fff',border:'2px solid #b8dff0',borderRadius:'14px',boxShadow:'4px 4px 0 #b8dff0',marginTop:'8px'}}>
                 <span style={{fontSize:'1.6rem'}}>🤝</span>
                 <span className="font-display font-black uppercase" style={{fontSize:'0.78rem',color:'var(--blue)',letterSpacing:'0.06em'}}>Build Brand Loyalty</span>
               </div>
             </div>
 
-            {/* Right: photo */}
             <div style={{position:'relative'}}>
               <div className="chw-photo-card">
                 <Image src="/images/community-how-it-works.png" alt="How community management works" fill style={{objectFit:'cover',objectPosition:'center top'}} sizes="(max-width:768px) 90vw, 45vw"/>
