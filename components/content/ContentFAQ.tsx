@@ -25,7 +25,6 @@ export default function ContentFAQ() {
       <section style={{background:'#f2f5fc',padding:'clamp(72px,9vw,100px) 0'}}>
         <div className="container">
           <div style={{textAlign:'center',marginBottom:'clamp(40px,6vw,56px)'}}>
-            <p className="font-display font-black uppercase" style={{fontSize:'0.75rem',letterSpacing:'0.14em',color:'var(--yellow)',marginBottom:'8px'}}>GOT QUESTIONS?</p>
             <h2 className="font-display font-black uppercase" style={{fontSize:'clamp(1.7rem,4vw,2.8rem)',color:'var(--blue)',lineHeight:1.08,letterSpacing:'-0.01em',maxWidth:'700px',margin:'0 auto'}}>
               FREQUENTLY ASKED{' '}
               <span style={{color:'var(--yellow)',textDecoration:'underline',textDecorationThickness:'4px',textUnderlineOffset:'6px'}}>QUESTIONS</span>
