@@ -16,13 +16,13 @@ export default function AboutPage() {
   return (
     <>
       <AboutHero />
-      <AboutStats />
-      <AboutStory />
+      {/* <AboutStats /> */}
+      {/* <AboutStory /> */}
       <WhyChooseUs />
       <AboutValues />
-      <CompanyTimeline />
-      <AboutTeam />
-      <AboutCTA />
+      {/* <CompanyTimeline /> */}
+      {/* <AboutTeam /> */}
+      {/* <AboutCTA /> */}
     </>
   )
 }

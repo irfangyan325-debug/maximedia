@@ -171,37 +171,7 @@ export default function HeroSection() {
         </div>
       </section>
 
-      <div style={{
-        background: '#ffffff',
-        borderTop: '1px solid rgba(26,86,219,0.08)',
-        borderBottom: '1px solid rgba(26,86,219,0.08)',
-        padding: 'clamp(18px, 3vw, 28px) 0',
-        overflow: 'hidden',
-      }}>
-        <div className="marquee-track">
-          {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, i) => (
-            <span
-              key={i}
-              style={{
-                padding: '0 clamp(16px, 3vw, 36px)',
-                height: '36px',
-                display: 'inline-flex',
-                alignItems: 'center',
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(0.65rem, 1.5vw, 0.82rem)',
-                fontWeight: 700,
-                letterSpacing: '0.04em',
-                color: 'rgba(12,26,78,0.22)',
-                whiteSpace: 'nowrap',
-                cursor: 'default',
-                flexShrink: 0,
-              }}
-            >
-              {logo}
-            </span>
-          ))}
-        </div>
-      </div>
+    
 
       <style>{`
         @media (max-width: 480px) {

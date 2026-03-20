@@ -22,7 +22,7 @@ export default function TeamPage() {
   return (
     <>
       <TeamHero />
-      <TeamStats />
+      {/* <TeamStats /> */}
       <TeamLeaders />
       <TeamGrid />
       {/* <TeamCulture />

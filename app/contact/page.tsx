@@ -4,9 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { TESTIMONIALS, SITE } from '@/lib/data'
 
-/* ─────────────────────────────────────────────────────
-   DATA
-───────────────────────────────────────────────────── */
+
 const SERVICES_LIST = [
   'Social Media Strategy', 'Social Selling',
   'Social Media Management', 'Data Analysis & ROI Modeling',

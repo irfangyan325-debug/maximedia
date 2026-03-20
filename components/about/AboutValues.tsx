@@ -29,9 +29,6 @@ export default function AboutValues() {
 
           {/* Heading */}
           <div style={{ textAlign: 'center', marginBottom: 'clamp(32px,5vw,52px)' }}>
-            <p className="font-display font-black uppercase" style={{ fontSize: '0.75rem', letterSpacing: '0.14em', color: 'var(--yellow)', marginBottom: '8px' }}>
-              WHAT WE STAND FOR
-            </p>
             <h2 className="font-display font-black uppercase" style={{
               fontSize: 'clamp(1.5rem,3.5vw,2.4rem)', color: 'var(--blue)', lineHeight: 1.1, letterSpacing: '-0.01em',
             }}>

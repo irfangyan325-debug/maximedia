@@ -111,9 +111,6 @@ export default function CareersPage() {
         }
       `}</style>
 
-      {/* ══════════════════════════════════════
-          HERO — blue bg, white text
-      ══════════════════════════════════════ */}
       <section className="careers-hero">
         {/* Decorative radial glow */}
         <div aria-hidden style={{
@@ -135,18 +132,6 @@ export default function CareersPage() {
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div className="careers-hero-inner">
-            {/* Eyebrow */}
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: '8px',
-              padding: '6px 14px', borderRadius: '100px',
-              background: 'rgba(255,255,255,0.12)', marginBottom: '20px',
-            }}>
-              <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--yellow)', display: 'inline-block' }} />
-              <span className="font-display font-black uppercase" style={{ fontSize: '0.72rem', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.85)' }}>
-                CAREERS
-              </span>
-            </div>
-
             <h1 className="font-display font-black uppercase" style={{
               fontSize: 'clamp(2.2rem,6vw,4rem)',
               lineHeight: 1.0, letterSpacing: '-0.02em',
@@ -173,30 +158,6 @@ export default function CareersPage() {
               We&apos;re a team of passionate marketers, creatives, and data nerds on a mission to prove social media
               is one of the most powerful revenue drivers available to any brand.
             </p>
-
-            {/* Quick stats row */}
-            <div style={{
-              display: 'flex', flexWrap: 'wrap', gap: 'clamp(10px,2vw,18px)',
-              marginTop: 'clamp(28px,4vw,40px)',
-            }}>
-              {[
-                { n: '500+', l: 'Brands Served' },
-                { n: '50+',  l: 'Team Members'  },
-                { n: '98%',  l: 'Retention Rate' },
-              ].map(s => (
-                <div key={s.l} style={{
-                  background: 'rgba(255,255,255,0.1)',
-                  border: '1.5px solid rgba(255,255,255,0.2)',
-                  borderRadius: '12px',
-                  padding: 'clamp(10px,1.5vw,14px) clamp(16px,2vw,24px)',
-                  textAlign: 'center',
-                  backdropFilter: 'blur(8px)',
-                }}>
-                  <p className="font-display font-black" style={{ fontSize: 'clamp(1.2rem,2.5vw,1.6rem)', color: 'var(--yellow)', lineHeight: 1 }}>{s.n}</p>
-                  <p style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.65)', marginTop: '4px', fontWeight: 600 }}>{s.l}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
 
@@ -208,9 +169,6 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          PERKS — light blue bg
-      ══════════════════════════════════════ */}
       <section style={{ background: '#f2f5fc', padding: 'clamp(64px,8vw,96px) 0' }}>
         <div className="container">
           {/* Heading */}

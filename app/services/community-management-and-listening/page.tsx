@@ -17,12 +17,12 @@ export default function CommunityManagementPage() {
   return (
     <>
       <CommunityHero />
-      <CommunityIntro />
+      {/* <CommunityIntro /> */}
       <CommunityHowItWorks />
       <CommunityWhatWeDo />
-      <CommunityHumanTouch />
-      <CommunityMomentsMarketing />
-      <CommunityOutbound />
+      {/* <CommunityHumanTouch /> */}
+      {/* <CommunityMomentsMarketing /> */}
+      {/* <CommunityOutbound /> */}
       <CommunityFAQ />
     </>
   )

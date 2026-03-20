@@ -18,7 +18,7 @@ export default function SocialMediaConsultingPage() {
     <>
       <ConsultingHero />
       <ConsultingWhy />
-      <ConsultingTeam />
+      {/* <ConsultingTeam /> */}
       <ConsultingProcess />
       <ConsultingPackages />
       {/* <ConsultingCustomHours /> */}

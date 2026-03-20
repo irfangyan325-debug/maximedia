@@ -15,9 +15,7 @@ export default function InfluencerMarketingPage() {
   return (
     <>
       <InfluencerHero />
-      <InfluencerWhy />
       <InfluencerProcess />
-      <InfluencerLevelUp />
       <InfluencerFAQ />
     </>
   )

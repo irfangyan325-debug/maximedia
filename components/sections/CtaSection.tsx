@@ -52,11 +52,7 @@ export default function CtaSection() {
         paddingBottom: '0',
       }}>
         {/* Floating decorations */}
-        <div style={{ position:'absolute', top:'-10px', left:'50%', transform:'translateX(-50%)', fontSize:'5rem', filter:'drop-shadow(0 8px 20px rgba(0,0,0,0.25))', pointerEvents:'none', zIndex:2 }}>⭐</div>
-        <div style={{ position:'absolute', top:'20px', right:'8%', fontSize:'4rem', filter:'drop-shadow(0 8px 20px rgba(0,0,0,0.2))', pointerEvents:'none', zIndex:2 }}>❤️</div>
-        <div style={{ position:'absolute', top:'38%', left:'5%', fontSize:'4.5rem', filter:'drop-shadow(0 8px 20px rgba(0,0,0,0.2))', pointerEvents:'none', zIndex:2 }}>💌</div>
-        <div style={{ position:'absolute', top:'30%', right:'4%', fontSize:'5rem', filter:'drop-shadow(0 8px 20px rgba(0,0,0,0.2))', pointerEvents:'none', zIndex:2 }}>👤</div>
-
+       
         <div className="container" style={{ position:'relative', zIndex:3, textAlign:'center' }}>
 
           {/* Headline */}

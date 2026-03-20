@@ -133,7 +133,7 @@ export default function Footer() {
                   MAXIMEDIA: THE Social Media Agency
                 </p>
                 <p style={{ fontSize: '0.84rem', color: 'rgba(12,26,78,0.55)', lineHeight: 1.85 }}>
-                  {SITE.address}<br />{SITE.city}<br />{SITE.phone}
+                  {SITE.address}<br />{SITE.city}
                 </p>
               </div>
             </div>
@@ -256,72 +256,9 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ══ SECTION 3 — Get In Touch + Socials ══ */}
-        <div style={{ background: '#f4f6fb', padding: 'clamp(40px,6vw,64px) 0 clamp(36px,5vw,56px)' }}>
-          <div className="container" style={{ textAlign: 'center' }}>
-            <h2 className="font-display font-black uppercase" style={{
-              fontSize: 'clamp(1.8rem, 5vw, 3.2rem)',
-              color: '#0c1a4e', marginBottom: '8px', letterSpacing: '-0.02em',
-            }}>
-              GET IN TOUCH
-            </h2>
-            <p style={{ fontSize: '0.93rem', color: 'rgba(12,26,78,0.55)', marginBottom: '28px' }}>
-              But only if you&apos;re ready to turn clicks into clients.
-            </p>
 
-            {/* Social icons */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: 'clamp(6px,1.5vw,12px)', flexWrap: 'wrap', maxWidth: '520px', margin: '0 auto' }}>
-              {SOCIAL_LINKS.map(s => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  style={{
-                    width: 'clamp(42px,6vw,52px)', height: 'clamp(42px,6vw,52px)',
-                    borderRadius: '50%', background: s.bg,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: '#fff', fontWeight: 900, fontSize: 'clamp(0.9rem,1.6vw,1.1rem)',
-                    textDecoration: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                    transition: 'transform 0.2s, box-shadow 0.2s', flexShrink: 0,
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px) scale(1.1)'; e.currentTarget.style.boxShadow = '0 10px 24px rgba(0,0,0,0.22)' }}
-                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0) scale(1)';   e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)' }}
-                >
-                  {s.icon}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* ══ SECTION 4 — Partners + Copyright ══ */}
         <div style={{ background: '#ffffff', borderTop: '2px solid rgba(26,86,219,0.08)' }}>
           <div className="container" style={{ padding: 'clamp(24px,4vw,32px) 0 clamp(16px,3vw,24px)' }}>
-
-            {/* Partner badges */}
-            <div className="footer-partner-row" style={{
-              display: 'flex', flexWrap: 'wrap', gap: '10px',
-              justifyContent: 'center', marginBottom: '20px',
-            }}>
-              {PARTNERS.map(p => (
-                <div key={p} style={{
-                  padding: 'clamp(6px,1vw,8px) clamp(10px,2vw,16px)',
-                  border: '1.5px solid rgba(26,86,219,0.15)',
-                  borderRadius: '8px',
-                  fontSize: 'clamp(0.65rem,1.2vw,0.75rem)',
-                  fontWeight: 700,
-                  color: 'rgba(12,26,78,0.5)',
-                  background: '#fff',
-                  letterSpacing: '0.03em',
-                  whiteSpace: 'nowrap',
-                }}>
-                  {p}
-                </div>
-              ))}
-            </div>
-
-            {/* Divider */}
-            <div style={{ height: '1px', background: 'rgba(26,86,219,0.1)', marginBottom: '18px' }} />
 
             {/* Copyright + legal */}
             <div style={{ textAlign: 'center', paddingBottom: 'clamp(16px,3vw,28px)' }}>
