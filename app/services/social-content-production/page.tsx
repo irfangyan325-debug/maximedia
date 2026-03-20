@@ -17,8 +17,7 @@ export default function SocialContentProductionPage() {
       <ContentHero />
       <ContentStrategy />
       <ContentProcess />
-      <ContentCapabilities />
-      <ContentDeck />
+      {/* <ContentCapabilities /> */}
       <ContentFAQ />
     </>
   )
